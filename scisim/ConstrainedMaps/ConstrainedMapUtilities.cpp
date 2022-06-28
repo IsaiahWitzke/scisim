@@ -20,6 +20,7 @@
 #include "scisim/ConstrainedMaps/Sobogus.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorAPGD.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPI.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPenalty.h"
 
 #ifdef IPOPT_FOUND
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIpopt.h"
@@ -155,7 +156,11 @@ std::unique_ptr<ImpactOperator> ConstrainedMapUtilities::deserializeImpactOperat
   }
   else if( "lcp_policy_iteration" == impact_operator_name )
   {
-    impact_operator.reset(new LCPOperatorPI{input_stream} );
+    impact_operator.reset(new LCPOperatorPI{ input_stream } );
+  }
+  else if( "lcp_penalty" == impact_operator_name )
+  {
+    impact_operator.reset(new LCPOperatorPenalty{ input_stream });
   }
   else if( "NULL" == impact_operator_name )
   {

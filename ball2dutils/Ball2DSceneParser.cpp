@@ -36,6 +36,7 @@
 #include "scisim/ConstrainedMaps/FrictionSolver.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorAPGD.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPI.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPenalty.h"
 #include "scisim/ConstrainedMaps/StaggeredProjections.h"
 #include "scisim/ConstrainedMaps/Sobogus.h"
 
