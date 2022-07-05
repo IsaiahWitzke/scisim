@@ -31,6 +31,7 @@
 #include "scisim/ConstrainedMaps/ImpactMaps/GROperator.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/GRROperator.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPI.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPenalty.h"
 #include "scisim/ConstrainedMaps/FrictionSolver.h"
 #include "scisim/ConstrainedMaps/StaggeredProjections.h"
 #include "scisim/ConstrainedMaps/Sobogus.h"
@@ -610,6 +611,14 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
     if (!loadTolerance(node, solver_name, tol)) return false;
     if (!loadMaxIters(node, solver_name, max_iters)) return false;
     impact_operator.reset(new LCPOperatorPI {tol, max_iters});
+  }
+  else if ( solver_name == "penalty" )
+  {
+    scalar tol;
+    unsigned max_iters;
+    if (!loadTolerance(node, solver_name, tol)) return false;
+    if (!loadMaxIters(node, solver_name, max_iters)) return false;
+    impact_operator.reset(new LCPOperatorPenalty {tol, max_iters});
   }
   #ifdef QL_FOUND
   else if( solver_name == "ql_vp" )
