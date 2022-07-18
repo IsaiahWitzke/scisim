@@ -64,10 +64,11 @@ void solveXValue(const SparseMatrixsc &Q, const scalar &penalty, const SparseMat
 //   x = cg.solve(-policy * b);
 // }
 
-void reportRuntime(const std::chrono::time_point<std::chrono::system_clock> &start)
+std::chrono::duration<double> reportRuntime(const std::chrono::time_point<std::chrono::system_clock> &start)
 {
   std::chrono::duration<double> elapsed_seconds = std::chrono::system_clock::now() - start;
-  std::cout << "LCPOperatorPenalty: Time elapsed: " << elapsed_seconds.count() << "s\n";
+  std::cerr << "LCPOperatorPenalty: Time elapsed: " << elapsed_seconds.count() << "s\n";
+  return elapsed_seconds;
 }
 
 // runs the actual collision solver - penalty method
@@ -75,7 +76,11 @@ void LCPOperatorPenalty::flow(const std::vector<std::unique_ptr<Constraint>> &co
                          const SparseMatrixsc &Minv, const VectorXs &q0, const VectorXs &v0, const VectorXs &v0F,
                          const SparseMatrixsc &N, const SparseMatrixsc &Q, const VectorXs &nrel, const VectorXs &CoR,
                          VectorXs &alpha) {
-  std::cout << "LCPOperatorPenalty: Solving LCP of size " << N.cols() << std::endl;
+  auto mm = MMatrixDeviance(Q);
+  auto dd = DiagonalDominanceDeviance(Q);
+
+  int size = N.cols();
+  std::cerr << "LCPOperatorPenalty: Solving LCP of size " << N.cols() << std::endl;
   // Get initial time
   std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 
@@ -92,7 +97,8 @@ void LCPOperatorPenalty::flow(const std::vector<std::unique_ptr<Constraint>> &co
     error = getError(Q, x, b);
     if (error <= m_tol) {
       alpha = x;
-      std::cout << "LCPOperatorPenalty: Converged in " << n_iter << " iterations." << std::endl;
+      std::cerr << "LCPOperatorPenalty: Converged in " << n_iter << " iterations." << std::endl;
+      //std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
       reportRuntime(start);
       return;
     }
@@ -101,6 +107,12 @@ void LCPOperatorPenalty::flow(const std::vector<std::unique_ptr<Constraint>> &co
       break;
     solveXValue(Q, penalty, PiMatrix, b, x);
   }
+  std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
+  //std::cout << "Both," << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second;
+  std::cerr << "LCPOperatorPenalty: Result did not converge" << std::endl;
+  std::cerr << "LCPOperatorPenalty: Error is: " << error << std::endl;
+  std::cerr << "LCPOperatorPenalty: Failed with size: " << N.cols() << std::endl;
+  std::cerr << "LCPOperatorPenalty: Failed with CoR: " << CoR(0) << std::endl;
   alpha = x;
 }
 
