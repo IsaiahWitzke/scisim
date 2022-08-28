@@ -98,7 +98,7 @@ void LCPOperatorIpopt::flow( const std::vector<std::unique_ptr<Constraint>>& con
 
   // Create the Ipopt-based QP solver
   assert( Q.rows() == Q.cols() );
-  std::cout << "LCPOperatorIpopt: Solving LCP of size " << N.cols() << std::endl;
+  // std::cout << "LCPOperatorIpopt: Solving LCP of size " << N.cols() << std::endl;
   // Get initial time
   std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
   // Use built in termination, for now
@@ -145,7 +145,8 @@ void LCPOperatorIpopt::flow( const std::vector<std::unique_ptr<Constraint>>& con
     }
   }
   std::chrono::duration<double> elapsed_seconds = std::chrono::system_clock::now() - start;
-  std::cout << "LCPOperatorIpopt: Solved LCP in " << elapsed_seconds.count() << " seconds." << std::endl;
+  std::cerr << "LCPOperatorIpopt: Solved LCP in " << elapsed_seconds.count() << " seconds." << std::endl;
+  std::cout << "ipopt" << ", " << elapsed_seconds.count() << ",";
 }
 
 void LCPOperatorIpopt::solveQP( const QPTerminationOperator& termination_operator, const SparseMatrixsc& Minv, const SparseMatrixsc& N, const VectorXs& b, VectorXs& alpha, scalar& achieved_tol ) const

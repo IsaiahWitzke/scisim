@@ -47,7 +47,7 @@ result = \
   <integrator type="symplectic_euler" dt="0.01"/>
 
   <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
-    <solver name="penalty" max_iters="100" tol="1.0e-12"/>
+    <solver name="policy_iteration" max_iters="100" tol="1.0e-12"/>
   </impact_operator>
 
   <near_earth_gravity f="0.0 -10.0"/>

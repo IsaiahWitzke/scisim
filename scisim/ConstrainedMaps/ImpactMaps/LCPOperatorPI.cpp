@@ -49,7 +49,7 @@ void updateValue(const SparseMatrixsc &policy, const SparseMatrixsc &Q, const Ve
 std::chrono::duration<double> reportTime(const std::chrono::time_point<std::chrono::system_clock> &start)
 {
   std::chrono::duration<double> elapsed_seconds = std::chrono::system_clock::now() - start;
-  std::cerr << "LCPOperatorPI: Time elapsed: " << elapsed_seconds.count() << "s\n";
+  std::cerr<< "LCPOperatorPI: Time elapsed: " << elapsed_seconds.count() << "s\n";
   return elapsed_seconds;
 }
 
@@ -61,7 +61,7 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
   auto dd = DiagonalDominanceDeviance(Q);
 
   int size = N.cols();
-  // std::cout << "LCPOperatorPI: Solving LCP of size " << N.cols() << std::endl;
+  std::cerr << "LCPOperatorPI: Solving LCP of size " << N.cols() << std::endl;
   // Get initial time
   std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 
@@ -76,15 +76,17 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
     if (error <= m_tol) {
       alpha = x;
       std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
+      std::cout << "policy, " << reportTime(start).count() << "," << n_iter << ",";
       //std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
-      reportTime(start);
+      //reportTime(start);
       return;
     }
     if (n_iter == max_iters)
       break;
     updateValue(policy, Q, b, x);
   }
-  std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
+  std::cout << "policy, " << reportTime(start).count() << "," << max_iters << ",";
+  //std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
   std::cerr << "LCPOperatorPI: Failed to converge in " << max_iters << " iterations." << std::endl;
   reportTime(start);
   std::cerr << "LCPOperatorPI: Result did not converge" << std::endl;

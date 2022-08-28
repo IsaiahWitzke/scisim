@@ -98,8 +98,9 @@ void LCPOperatorPenalty::flow(const std::vector<std::unique_ptr<Constraint>> &co
     if (error <= m_tol) {
       alpha = x;
       std::cerr << "LCPOperatorPenalty: Converged in " << n_iter << " iterations." << std::endl;
+      std::cout << "penalty, " << reportRuntime(start).count() << "," << n_iter << ",";
+      //reportRuntime(start);
       //std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
-      reportRuntime(start);
       return;
     }
     setPiMatrixValues(PiMatrix, x);
@@ -107,7 +108,8 @@ void LCPOperatorPenalty::flow(const std::vector<std::unique_ptr<Constraint>> &co
       break;
     solveXValue(Q, penalty, PiMatrix, b, x);
   }
-  std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
+  std::cout << "penalty, " << reportRuntime(start).count() << "," << max_iters << ",";
+  //std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
   //std::cout << "Both," << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second;
   std::cerr << "LCPOperatorPenalty: Result did not converge" << std::endl;
   std::cerr << "LCPOperatorPenalty: Error is: " << error << std::endl;

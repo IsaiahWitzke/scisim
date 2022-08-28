@@ -47,7 +47,7 @@ def create_xml(num_balls):
       <integrator type="symplectic_euler" dt="0.01"/>
     
       <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
-        <solver name="penalty" max_iters="100" tol="1.0e-8"/>
+        <solver name="penalty" max_iters="100" tol="1.0e-6"/>
       </impact_operator>
     
       <near_earth_gravity f="0.0 -10.0"/>

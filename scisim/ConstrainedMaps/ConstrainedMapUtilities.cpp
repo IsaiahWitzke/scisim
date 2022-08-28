@@ -24,6 +24,7 @@
 
 #ifdef IPOPT_FOUND
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIpopt.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperator3.h"
 #include "scisim/ConstrainedMaps/FrictionMaps/SmoothMDPOperatorIpopt.h"
 #endif
 
@@ -148,6 +149,10 @@ std::unique_ptr<ImpactOperator> ConstrainedMapUtilities::deserializeImpactOperat
   else if( "lcp_ipopt" == impact_operator_name )
   {
     impact_operator.reset( new LCPOperatorIpopt{ input_stream } );
+  }
+  else if ( "lcp_solver3" == impact_operator_name )
+  {
+    impact_operator.reset( new LCPOperator3{ input_stream } );
   }
   #endif
   else if( "lcp_apgd" == impact_operator_name )
