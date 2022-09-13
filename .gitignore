@@ -7,3 +7,4 @@ scisim/Math/QL/ql.for
 scisim/CompileDefinitions.h
 xcode
 *.pyc
+build/*
