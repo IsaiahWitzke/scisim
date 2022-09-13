@@ -1,6 +1,7 @@
 # CMake 3.6.1 fixes a bug with GCC and the system flag on OS X. Older CMake versions
 # are acceptable if a different platform or toolchain is used.
 cmake_minimum_required( VERSION 3.6.1 )
+cmake_policy(SET CMP0072 NEW)
 
 # Check that the Eigen is installed
 execute_process( COMMAND ./scripts_include/eigen_found.sh RESULT_VARIABLE EIGEN_NOT_FOUND WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
