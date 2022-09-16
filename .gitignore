@@ -8,3 +8,4 @@ scisim/CompileDefinitions.h
 build
 xcode
 *.pyc
+.vscode
