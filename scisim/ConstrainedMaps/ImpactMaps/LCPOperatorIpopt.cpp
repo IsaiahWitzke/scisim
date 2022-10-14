@@ -145,8 +145,8 @@ void LCPOperatorIpopt::flow( const std::vector<std::unique_ptr<Constraint>>& con
     }
   }
   std::chrono::duration<double> elapsed_seconds = std::chrono::system_clock::now() - start;
-  std::cerr << "LCPOperatorIpopt: Solved LCP in " << elapsed_seconds.count() << " seconds." << std::endl;
-  std::cout << "ipopt" << ", " << elapsed_seconds.count() << ",";
+  // std::cerr << "LCPOperatorIpopt: Solved LCP in " << elapsed_seconds.count() << " seconds." << std::endl;
+  // std::cout << "ipopt" << ", " << elapsed_seconds.count() << ",";
 }
 
 void LCPOperatorIpopt::solveQP( const QPTerminationOperator& termination_operator, const SparseMatrixsc& Minv, const SparseMatrixsc& N, const VectorXs& b, VectorXs& alpha, scalar& achieved_tol ) const

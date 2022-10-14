@@ -57,7 +57,10 @@ scalar RigidBody2DSim::computePotentialEnergy() const
 
 scalar RigidBody2DSim::computeTotalEnergy() const
 {
-  return computeKineticEnergy() + computePotentialEnergy();
+  auto k = computeKineticEnergy();
+  auto p = computePotentialEnergy();
+  // std::cout << "K: " << k << ", P: " << p << std::endl;
+  return k + p;
 }
 
 Vector2s RigidBody2DSim::computeTotalMomentum() const
@@ -106,8 +109,14 @@ void RigidBody2DSim::computeForce( const VectorXs& q, const VectorXs& v, const s
   assert( q.size() % 3 == 0 ); assert( v.size() == q.size() ); assert( v.size() == F.size() );
   F.setZero();
   const std::vector<std::unique_ptr<RigidBody2DForce>>& forces{ m_state.forces() };
+  // std::cout << "\n forces... \n" << std::endl;
   for( const std::unique_ptr<RigidBody2DForce>& force : forces )
   {
+    // VectorXs f{ 3 };
+    // f.setZero();
+    // force->computeForce( q, v, m_state.M(), f );
+    // std::cout << "\napplying force...\n" << f << std::endl;
+
     force->computeForce( q, v, m_state.M(), F );
   }
 }
@@ -295,6 +304,8 @@ void RigidBody2DSim::dispatchNarrowPhaseCollision( unsigned idx0, unsigned idx1,
             #endif
 
             // Creation of constraints at q0 to preserve angular momentum
+            // std::cout << "Creation of constraints at q0 to preserve angular momentum" << std::endl;
+            // std::cout << q0a << std::endl << std::endl << q0b << std::endl;
             const Vector2s n{ ( q0a - q0b ).normalized() };
             assert( !isKinematicallyScripted( idx0 ) );
             if( !isKinematicallyScripted( idx1 ) )
@@ -793,13 +804,25 @@ void RigidBody2DSim::flow( PythonScripting& call_back, const unsigned iteration,
   VectorXs q1{ m_state.q().size() };
   VectorXs v1{ m_state.v().size() };
 
+  // nothing... just does stuff with portals
   updatePeriodicBoundaryConditionsStartOfStep( iteration, scalar(dt) );
 
+  // first calls umap::flow as a "predictor step"
+  // see either...
+  //   rigidbody2d/VerletMap.cpp -> flow
+  //   rigidbody2d/SymplecticEuler.cpp -> flow
+  // pseudoscope for euler:
+  // calculates "forces" (this seems to ONLY be gravity)
+  // then applies forces (acceleration) to v0 to get v1
+  // then applies v1 to q0 to get q1
+
+  // after predictor, calls csys.computeActiveSet on the new q1, v1 to see if there are any overlaps now
   imap.flow( call_back, *this, *this, umap, iop, iteration, scalar(dt), CoR, m_state.q(), m_state.v(), q1, v1 );
 
   q1.swap( m_state.q() );
   v1.swap( m_state.v() );
 
+  // nothing... just does stuff with portals
   enforcePeriodicBoundaryConditions( m_state.q(), m_state.v() );
 
   call_back.setState( m_state );

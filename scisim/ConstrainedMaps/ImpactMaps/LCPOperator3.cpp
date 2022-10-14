@@ -51,7 +51,7 @@ LCPOperator3::LCPOperator3(std::istream &input_stream)
 }
 
 
-scalar getEndError(const SparseMatrixsc &Q, const VectorXs &x, const VectorXs &b)
+static scalar getEndError(const SparseMatrixsc &Q, const VectorXs &x, const VectorXs &b)
 {
   scalar err2 = 0;
   VectorXs y = Q * x + b; // resultant vector
@@ -61,7 +61,7 @@ scalar getEndError(const SparseMatrixsc &Q, const VectorXs &x, const VectorXs &b
   return sqrt(err2);
 }
 
-scalar getAbsDiff(VectorXs a, VectorXs b) {
+static scalar getAbsDiff(VectorXs a, VectorXs b) {
     scalar err = 0;
     for (int i = 0; i < a.size(); ++i) {
         err += ((a(i) - b(i)) * (a(i) - b(i)));

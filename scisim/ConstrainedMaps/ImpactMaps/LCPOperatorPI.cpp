@@ -61,7 +61,7 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
   auto dd = DiagonalDominanceDeviance(Q);
 
   int size = N.cols();
-  std::cerr << "LCPOperatorPI: Solving LCP of size " << N.cols() << std::endl;
+  // std::cerr << "LCPOperatorPI: Solving LCP of size " << N.cols() << std::endl;
   // Get initial time
   std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 
@@ -75,8 +75,8 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
     error = getPolicy(Q, x, b, policy);
     if (error <= m_tol) {
       alpha = x;
-      std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
-      std::cout << "policy, " << reportTime(start).count() << "," << n_iter << ",";
+      // std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
+      // std::cout << "policy, " << reportTime(start).count() << "," << n_iter << ",";
       //std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
       //reportTime(start);
       return;
@@ -85,13 +85,13 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
       break;
     updateValue(policy, Q, b, x);
   }
-  std::cout << "policy, " << reportTime(start).count() << "," << max_iters << ",";
+  // std::cout << "policy, " << reportTime(start).count() << "," << max_iters << ",";
   //std::cout << "Diverges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
-  std::cerr << "LCPOperatorPI: Failed to converge in " << max_iters << " iterations." << std::endl;
-  reportTime(start);
-  std::cerr << "LCPOperatorPI: Result did not converge" << std::endl;
-  std::cerr << "LCPOperatorPI: Error is: " << error << std::endl;
-  std::cerr << "LCPOperatorPI: Failed with size: " << N.cols() << std::endl;
+  // std::cerr << "LCPOperatorPI: Failed to converge in " << max_iters << " iterations." << std::endl;
+  // reportTime(start);
+  // std::cerr << "LCPOperatorPI: Result did not converge" << std::endl;
+  // std::cerr << "LCPOperatorPI: Error is: " << error << std::endl;
+  // std::cerr << "LCPOperatorPI: Failed with size: " << N.cols() << std::endl;
   alpha = x;
 }
 

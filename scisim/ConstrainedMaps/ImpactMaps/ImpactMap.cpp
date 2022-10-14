@@ -6,6 +6,7 @@
 #include "ImpactMap.h"
 
 #include <memory>
+#include <iostream>
 
 #include "scisim/ConstrainedMaps/ImpactMaps/ImpactOperatorUtilities.h"
 #include "scisim/Constraints/ConstrainedSystem.h"
@@ -109,6 +110,9 @@ void ImpactMap::flow( ScriptingCallback& call_back, FlowableSystem& fsys, Constr
   // Quadratic term in LCP QP
   const SparseMatrixsc Q{ N.transpose() * fsys.Minv() * N };
 
+  // std::cout << "Minv\n" << MatrixXs(fsys.Minv()) << std::endl;
+  // std::cout << "Q\n" << MatrixXs(Q) << std::endl;
+
   // Evaluate the kinematic scripted object's velocity projected onto the constraint set
   VectorXs gdotN;
   ImpactOperatorUtilities::evalKinematicRelativeVelocityN( q0, active_set, gdotN );
@@ -131,7 +135,10 @@ void ImpactMap::flow( ScriptingCallback& call_back, FlowableSystem& fsys, Constr
 
   // Note: No friction, so initial velocity passed in twice
   imap.flow( active_set, fsys.M(), fsys.Minv(), q0, v0, v0, N, Q, gdotN, CoR, alpha );
+
   v2 = v0 + fsys.Minv() * N * alpha;
+  // std::cout << std::endl << "v before collision: \n" << v0 << std::endl;
+  // std::cout << std::endl << "v after collision: \n" << v2 << std::endl;
 
   // Verify that momentum and angular momentum are conserved
   #ifndef NDEBUG

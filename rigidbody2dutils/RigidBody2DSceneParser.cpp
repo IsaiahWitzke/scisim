@@ -40,6 +40,7 @@
 #ifdef IPOPT_FOUND
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIpopt.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperator3.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIsaiahDebug.h"
 #endif
 
 #ifdef QL_FOUND
@@ -658,7 +659,7 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
   }
   #endif
   #ifdef IPOPT_FOUND
-  else if(( solver_name == "ipopt" ) || (solver_name == "solver3"))
+  else if(( solver_name == "ipopt" ) || (solver_name == "solver3") || solver_name == "lcp_solver_isaiah_debug")
   {
     // Attempt to read the desired linear solvers
     std::vector<std::string> linear_solvers;
@@ -712,6 +713,10 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
       unsigned max_iters;
       if (!loadMaxIters(node, solver_name, max_iters)) return false;
       impact_operator.reset( new LCPOperator3{ linear_solvers, con_tol, max_iters } );
+    } else if (solver_name == "lcp_solver_isaiah_debug") {
+      unsigned max_iters;
+      if (!loadMaxIters(node, solver_name, max_iters)) return false;
+      impact_operator.reset( new LCPOperatorIsaiahDebug{ linear_solvers, con_tol, max_iters } );
     }
   }
   #endif

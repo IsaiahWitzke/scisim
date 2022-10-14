@@ -7,6 +7,8 @@
 
 #include "scisim/Constraints/Constraint.h"
 
+#include <iostream>
+
 void ImpactOperatorUtilities::computeN( const FlowableSystem& fsys, const std::vector<std::unique_ptr<Constraint>>& V, const VectorXs& q, SparseMatrixsc& N )
 {
   assert( N.cols() == int( V.size() ) );
@@ -40,6 +42,8 @@ void ImpactOperatorUtilities::computeN( const FlowableSystem& fsys, const std::v
     }
     assert( con_itr == V.cend() );
   }
+
+  // std::cout << "N:\n" << MatrixXs(N) << std::endl;
 
   assert( column_nonzeros.sum() == N.nonZeros() );
 
