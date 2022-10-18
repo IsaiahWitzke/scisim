@@ -439,6 +439,7 @@ static int executeSimLoop()
   while( true )
   {
     // N.B. this will ocassionaly not trigger at the *exact* equal time due to floating point errors
+    std::cerr << g_iteration * scalar( g_dt ) << "/" << g_end_time << std::endl;
     if( g_iteration * scalar( g_dt ) >= g_end_time )
     {
       #ifdef USE_HDF5

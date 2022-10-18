@@ -69,6 +69,22 @@ static scalar getAbsDiff(VectorXs a, VectorXs b) {
     return sqrt(err);
 }
 
+void printMatrix(SparseMatrixsc m, std::string name) {
+
+    std::cout << name << ":" << std::endl;
+    std::cout << "size: " << m.rows() << " " << m.cols() << std::endl; // Q is nxn so rows == cols is all we need to print out
+
+    for (int k=0; k < m.outerSize(); ++k)
+    {
+      for (SparseMatrixsc::InnerIterator it(m,k); it; ++it)
+      {
+        std::cout << "(" << it.row() << "," << it.col() << "," << it.value() << ") ";
+      }
+    }
+
+    std::cout << std::endl;
+}
+
 void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>> &cons, const SparseMatrixsc &M,
                          const SparseMatrixsc &Minv, const VectorXs &q0, const VectorXs &v0, const VectorXs &v0F,
                          const SparseMatrixsc &N, const SparseMatrixsc &Q, const VectorXs &nrel, const VectorXs &CoR,
@@ -84,31 +100,26 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
     bool penalty_converges = false;
     
     ipopt_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, ipopt_sol);
-    //TODO: how to check if ipopt doesn't converge, since it crashes automatically
 
     policy_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, policy_sol);
     if (getEndError(Q, policy_sol, b) <= m_tol) {
         policy_converges = true;
     }
+
+    // printMatrix(M, "M");
+    // printMatrix(N, "N");
+    printMatrix(Q, "Q");
+    // printMatrix(v0, "v0");
     // penalty_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, penalty_sol);
     // if (getEndError(Q, penalty_sol, b) <= m_tol) {
     //     penalty_converges = true;
     // }
-    SparseMatrixsc Q_c(Q);
-    Q_c.makeCompressed();
+    SparseMatrixsc N_c(N);
+    N_c.makeCompressed();
 
-    std::cout << "Q:" << std::endl;
-    std::cout << "size: " << Q.rows() << std::endl; // Q is nxn so rows == cols is all we need to print out
-
-    for (int k=0; k < Q.outerSize(); ++k)
-    {
-      for (SparseMatrixsc::InnerIterator it(Q,k); it; ++it)
-      {
-        std::cout << "(" << it.row() << "," << it.col() << "," << it.value() << ") ";
-      }
-    }
     std::cout << std::endl;
     std::cout << "policy_converges:\n" << policy_converges << std::endl;
+    std::cerr << "policy_converges:" << policy_converges << std::endl;
     // std::cout << "penalty_converges:\n" << penalty_converges << std::endl;
 
     // we will just always use ipopt solution here

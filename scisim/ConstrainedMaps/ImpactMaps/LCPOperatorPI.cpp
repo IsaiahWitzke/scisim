@@ -75,9 +75,9 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
     error = getPolicy(Q, x, b, policy);
     if (error <= m_tol) {
       alpha = x;
-      // std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
+      std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
       // std::cout << "policy, " << reportTime(start).count() << "," << n_iter << ",";
-      //std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
+      // std::cout << "Converges, " << size << "," << std::max(mm.first,mm.second) << "," << mm.first << "," << mm.second << "," << dd.first << "," << dd.second << "," << error << std::endl;
       //reportTime(start);
       return;
     }
