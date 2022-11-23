@@ -70,9 +70,8 @@ static scalar getAbsDiff(VectorXs a, VectorXs b) {
 }
 
 void printMatrix(SparseMatrixsc m, std::string name) {
-
     std::cout << name << ":" << std::endl;
-    std::cout << "size: " << m.rows() << " " << m.cols() << std::endl; // Q is nxn so rows == cols is all we need to print out
+    std::cout << "size: " << m.rows() << " " << m.cols() << std::endl; 
 
     for (int k=0; k < m.outerSize(); ++k)
     {
@@ -83,6 +82,16 @@ void printMatrix(SparseMatrixsc m, std::string name) {
     }
 
     std::cout << std::endl;
+}
+void printVector(VectorXs v, std::string name) {
+  std::cout << name << ":" << std::endl;
+  std::cout << "size: " << v.rows() << " " << v.cols() << std::endl; 
+
+  for (int row=0; row < v.rows(); ++row) {
+    std::cout << "(" << row << "," << 0 << "," << v(row) << ") ";
+  }
+
+  std::cout << std::endl;
 }
 
 void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>> &cons, const SparseMatrixsc &M,
@@ -101,14 +110,20 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
     
     ipopt_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, ipopt_sol);
 
+    policy_solver->target_soln = ipopt_sol;
+
     policy_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, policy_sol);
     if (getEndError(Q, policy_sol, b) <= m_tol) {
         policy_converges = true;
     }
 
     // printMatrix(M, "M");
-    // printMatrix(N, "N");
+    printMatrix(N, "N");
     printMatrix(Q, "Q");
+    printMatrix(Minv, "Minv");
+    printVector(v0, "v0");
+    printVector(ipopt_sol, "ipopt_sol");
+    printVector(policy_sol, "policy_sol");
     // printMatrix(v0, "v0");
     // penalty_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, penalty_sol);
     // if (getEndError(Q, penalty_sol, b) <= m_tol) {
@@ -124,6 +139,7 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
 
     // we will just always use ipopt solution here
     alpha = ipopt_sol;
+    exit(0);
 }
 
 std::string LCPOperatorIsaiahDebug::name() const {

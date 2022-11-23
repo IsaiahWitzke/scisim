@@ -40,6 +40,7 @@ scalar getPolicy(const SparseMatrixsc &Q, const VectorXs &x, const VectorXs &b, 
 void updateValue(const SparseMatrixsc &policy, const SparseMatrixsc &Q, const VectorXs &b, VectorXs &x)
 {
   Eigen::ConjugateGradient<SparseMatrixsc, Eigen::Lower|Eigen::Upper> cg;
+  // Eigen::ConjugateGradient<SparseMatrixsc, Eigen::Lower> cg;
   SparseMatrixsc I {b.size(), b.size()};
   I.setIdentity();
   cg.compute(policy * Q * policy + I - policy);
@@ -70,9 +71,22 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
   VectorXs x { b.size() }; // Initial guess of 0 (maybe change later)
   SparseMatrixsc policy { x.size(), x.size() };
   scalar error = 0;
+
+  VectorXs x_minus_1 { b.size() }; // what was x 1 itr ago?
+  VectorXs x_minus_2 { b.size() }; // what was x 2 itrs ago?
+
   for (unsigned n_iter = 0; n_iter <= max_iters; ++n_iter)
   {
+
     error = getPolicy(Q, x, b, policy);
+    std::cerr << "iteration " << n_iter <<
+       ", error: " << error << 
+       ", x: " << x << 
+       ", policy: " << policy << 
+    //   ", distance to soln: " << (x - target_soln).norm() <<
+    //   ", dist to x_minus_1 " << (x - x_minus_1).norm() <<
+    //   ", dist to x_minus_2 " << (x - x_minus_2).norm() <<
+      std::endl;
     if (error <= m_tol) {
       alpha = x;
       std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;
@@ -83,6 +97,14 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
     }
     if (n_iter == max_iters)
       break;
+
+    if(n_iter == 1) {
+      x_minus_1 = x;
+    }
+    if(n_iter >= 2) {
+      x_minus_2 = x_minus_1;
+      x_minus_1 = x;
+    }
     updateValue(policy, Q, b, x);
   }
   // std::cout << "policy, " << reportTime(start).count() << "," << max_iters << ",";
