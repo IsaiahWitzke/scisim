@@ -107,6 +107,7 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
 
     bool policy_converges = false;
     bool penalty_converges = false;
+    bool ipopt_converges = false;
     
     ipopt_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, ipopt_sol);
 
@@ -115,6 +116,9 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
     policy_solver->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, policy_sol);
     if (getEndError(Q, policy_sol, b) <= m_tol) {
         policy_converges = true;
+    }
+    if (getEndError(Q, ipopt_sol, b) <= m_tol) {
+        ipopt_converges = true;
     }
 
     // printMatrix(M, "M");
@@ -134,12 +138,13 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
 
     std::cout << std::endl;
     std::cout << "policy_converges:\n" << policy_converges << std::endl;
-    std::cerr << "policy_converges:" << policy_converges << std::endl;
+    std::cout << "ipopt_converges:\n" << ipopt_converges << std::endl;
+    // std::cerr << "policy_converges:" << policy_converges << std::endl;
     // std::cout << "penalty_converges:\n" << penalty_converges << std::endl;
 
     // we will just always use ipopt solution here
     alpha = ipopt_sol;
-    exit(0);
+    // exit(0);
 }
 
 std::string LCPOperatorIsaiahDebug::name() const {

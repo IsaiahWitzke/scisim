@@ -1,0 +1,23 @@
+
+    <rigidbody2d_scene>
+    
+      <camera center="0 0" scale="8.3225" fps="50" render_at_fps="0" locked="0"/>
+    
+      <integrator type="symplectic_euler" dt="0.01"/>
+    
+      <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
+        <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-6"/>
+      </impact_operator>
+    
+      <near_earth_gravity f="0.0 0.0"/>
+    
+    
+      <geometry type="circle" r="1"/>
+    
+      <rigid_body x="7.98968120930954e-05 0.007376591044762345" theta="0" v="0.9153937142950157 0.10308949895083264" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+  <rigid_body x="0.004342721273366952 0.10723311858979105" theta="0" v="-0.17803799799140818 0.2788127227814563" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+  <rigid_body x="0.10990752709448878 0.0077731842182845005" theta="0" v="0.8991434507012372 -0.7127133502923595" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+  <rigid_body x="0.10661711170958585 0.10349324386910122" theta="0" v="0.49888794494215305 0.5867161119232012" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+    
+    </rigidbody2d_scene>
+    

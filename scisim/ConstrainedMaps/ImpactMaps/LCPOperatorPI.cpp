@@ -79,14 +79,14 @@ void LCPOperatorPI::flow(const std::vector<std::unique_ptr<Constraint>> &cons, c
   {
 
     error = getPolicy(Q, x, b, policy);
-    std::cerr << "iteration " << n_iter <<
-       ", error: " << error << 
-       ", x: " << x << 
-       ", policy: " << policy << 
+    // std::cerr << "iteration " << n_iter <<
+    //    ", error: " << error << 
+    //    ", x: " << x << 
+    //    ", policy: " << policy << 
     //   ", distance to soln: " << (x - target_soln).norm() <<
     //   ", dist to x_minus_1 " << (x - x_minus_1).norm() <<
     //   ", dist to x_minus_2 " << (x - x_minus_2).norm() <<
-      std::endl;
+      // std::endl;
     if (error <= m_tol) {
       alpha = x;
       std::cerr << "LCPOperatorPI: Converged in " << n_iter << " iterations." << std::endl;

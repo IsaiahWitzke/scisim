@@ -12,7 +12,7 @@ class Ball:
         self.v = v
 
     def to_xml(self):
-        return f'  <rigid_body x="{self.q[0]} {self.q[1]}" theta="1.570796326794897" v="{self.v[0]} {self.v[1]}" omega="0" rho="8.0" r="{self.r}" geo_idx="0"/>'
+        return f'  <rigid_body x="{self.q[0]} {self.q[1]}" theta="0" v="{self.v[0]} {self.v[1]}" omega="0" rho="{1 / math.pi}" r="{self.r}" geo_idx="0"/>'
 
 def create_xml(grid_size, name):
 
@@ -66,10 +66,10 @@ def create_xml(grid_size, name):
     """
 
     os.makedirs('grid', exist_ok=True)
-    with open(os.path.join('grid',f'{name}.xml'), 'w') as f:
+    with open(os.path.join('grid_v2',f'{name}.xml'), 'w') as f:
         f.write(result)
 
 # sizes = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 40000, 90000, 160000]
 # sizes = [3, 4, 5, 10, 20, 50]
-for itr in range(100, 500):
-    create_xml(3, f"itr_{itr}")
+for itr in range(500):
+    create_xml(2, f"itr_{itr}")

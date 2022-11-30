@@ -60,14 +60,19 @@ def read_data(f_path):
         'N': [],
         'Q': [],
         'v0': [],
+        'Minv': [],
         'ipopt_sol': [],
         'policy_sol': [],
         'policy_converged': [],
+        'ipopt_converged': [],
         'f_name':[]
     }
     with open(f_path) as f:
         while True:
             line = f.readline()
+            # no collision happened in the simulation
+            if re.match("^Simulation complete", line):
+                return None
             if not line:
                 data['f_name'] = [f_path] * len(data['Q'])
                 return data
@@ -77,10 +82,16 @@ def read_data(f_path):
                 data['policy_sol'].append(read_sparse_matrix(f))
             if re.match("^v0:", line):
                 data['v0'].append(read_sparse_matrix(f))
+            if re.match("^Minv:", line):
+                data['Minv'].append(read_sparse_matrix(f))
             if re.match("^N:", line):
                 data['N'].append(read_sparse_matrix(f))
             if re.match("^Q:", line):
                 data['Q'].append(read_sparse_matrix(f))
+            if re.match("^ipopt_converges", line):
+                data['ipopt_converged'].append(
+                    bool(int(f.readline()))
+                )
             if re.match("^policy_converges", line):
                 data['policy_converged'].append(
                     bool(int(f.readline()))
@@ -204,7 +215,10 @@ def perform_calcs_on_dataframe(pd_data, print_status = False):
 def read_file_to_pd_dataframe(f_name, print_status = False):
     if print_status:
         print(f"reading data from: {f_name}")
-    pd_data = pd.DataFrame(read_data(f_name))
+    file_data = read_data(f_name)
+    if file_data == None:
+        return None
+    pd_data = pd.DataFrame(file_data)
     perform_calcs_on_dataframe(pd_data)
     return pd_data
 

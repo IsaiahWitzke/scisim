@@ -1,4 +1,4 @@
-Git Revision:     3cfe7dc3fe6810e9e399640d632720aa3564fe80
+Git Revision:     18345a57b34405566a64d0bf3d2a118f1cdbade3
 Build Mode:       Debug
 C Compiler:       /usr/bin/cc
 C++ Compiler:     /usr/bin/c++
@@ -25,4 +25,6 @@ size: 15 1
 (0,0,25.2523) (1,0,0) (2,0,12.4415) (3,0,0) (4,0,0) (5,0,2.37708) (6,0,14.9848) (7,0,0) (8,0,0) (9,0,0) (10,0,4.93384) (11,0,12.0064) (12,0,9.29278) (13,0,4.5856) (14,0,8.05807) 
 
 policy_converges:
+1
+ipopt_converges:
 1
