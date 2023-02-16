@@ -1,10 +1,4 @@
-Git Revision:     18345a57b34405566a64d0bf3d2a118f1cdbade3
-Build Mode:       Debug
-C Compiler:       /usr/bin/cc
-C++ Compiler:     /usr/bin/c++
-Fortran Compiler: gfortran
-Body count: 9
-No end time specified. Simulation will run indefinitely.
+solve status: 0
 N:
 size: 27 3
 (0,0,0.0218402) (1,0,-0.999761) (3,0,-0.0218402) (4,0,0.999761) (6,1,-0.999991) (7,1,0.00423302) (15,1,0.999991) (16,1,-0.00423302) (9,2,-0.999519) (10,2,-0.0310115) (18,2,0.999519) (19,2,0.0310115) 

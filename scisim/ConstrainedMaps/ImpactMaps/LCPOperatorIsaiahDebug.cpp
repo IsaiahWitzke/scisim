@@ -56,7 +56,7 @@ static scalar getEndError(const SparseMatrixsc &Q, const VectorXs &x, const Vect
   scalar err2 = 0;
   VectorXs y = Q * x + b; // resultant vector
   for (int i = 0; i < x.size(); ++i) {
-    err2 += fmin(x(i), y(i)) * fmin(x(i), y(i));
+      err2 += fmin(x(i), y(i)) * fmin(x(i), y(i));
   }
   return sqrt(err2);
 }
@@ -94,6 +94,10 @@ void printVector(VectorXs v, std::string name) {
   std::cout << std::endl;
 }
 
+float getKineticEnergy(const SparseMatrixsc &M, const VectorXs &v) {
+  return 0.5 * v.transpose() * M * v;
+}
+
 void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>> &cons, const SparseMatrixsc &M,
                          const SparseMatrixsc &Minv, const VectorXs &q0, const VectorXs &v0, const VectorXs &v0F,
                          const SparseMatrixsc &N, const SparseMatrixsc &Q, const VectorXs &nrel, const VectorXs &CoR,
@@ -121,6 +125,8 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
         ipopt_converges = true;
     }
 
+    // float K_0 = getKineticEnergy(M, v0);
+    // float K_1 = getKineticEnergy(M, Minv * ipopt_sol);
     // printMatrix(M, "M");
     printMatrix(N, "N");
     printMatrix(Q, "Q");
@@ -144,7 +150,7 @@ void LCPOperatorIsaiahDebug::flow(const std::vector<std::unique_ptr<Constraint>>
 
     // we will just always use ipopt solution here
     alpha = ipopt_sol;
-    // exit(0);
+    exit(0);
 }
 
 std::string LCPOperatorIsaiahDebug::name() const {

@@ -6,7 +6,7 @@
       <integrator type="symplectic_euler" dt="0.01"/>
     
       <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
-        <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-6"/>
+        <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-9"/>
       </impact_operator>
     
       <near_earth_gravity f="0.0 0.0"/>
@@ -15,9 +15,9 @@
       <geometry type="circle" r="1"/>
     
       <rigid_body x="0.0013159472201816347 0.0006818073486116683" theta="0" v="-0.75485741426137 -0.8472026866991413" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
-  <rigid_body x="0.0005117624435047984 0.10017144270232649" theta="0" v="-0.6660644146090087 -0.4797135039050051" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
-  <rigid_body x="0.10073556835293525 0.004154667103680101" theta="0" v="0.2628780099324457 -0.9816353054891915" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
-  <rigid_body x="0.10307602166281617 0.10293461413523394" theta="0" v="-0.6302730586739673 -0.9273420810327173" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+      <rigid_body x="0.0005117624435047984 0.10017144270232649" theta="0" v="-0.6660644146090087 -0.4797135039050051" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+      <rigid_body x="0.10073556835293525 0.004154667103680101" theta="0" v="0.2628780099324457 -0.9816353054891915" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
+      <rigid_body x="0.10307602166281617 0.10293461413523394" theta="0" v="-0.6302730586739673 -0.9273420810327173" omega="0" rho="0.3183098861837907" r="1" geo_idx="0"/>
     
     </rigidbody2d_scene>
     

@@ -126,6 +126,9 @@ void LCPOperatorIpopt::flow( const std::vector<std::unique_ptr<Constraint>>& con
     ipopt_app->OptimizeTNLP( ipopt_problem );
     const Ipopt::SolverReturn solve_status{ qp_nlp.getReturnStatus() };
 
+    std::cout << "solve status: " << solve_status << std::endl;
+
+
     // If the solve failed
     if( solve_status != Ipopt::SUCCESS && solve_status != Ipopt::STOP_AT_ACCEPTABLE_POINT )
     {

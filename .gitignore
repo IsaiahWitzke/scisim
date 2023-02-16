@@ -9,5 +9,5 @@ build
 xcode
 *.pyc
 .vscode
-**/outs/**
-**/isaiah_ura/grid/*
+*/outs/**/*.out
+*/isaiah_ura/grid/*
