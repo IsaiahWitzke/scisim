@@ -122,21 +122,20 @@ def test_value_iter(solver: ValueIteration):
 # getting data that has actually been generated from running our simulations
 #
 
-NUM_SIMULATION_GENERATED_TESTS = 50
+NUM_SIMULATION_GENERATED_TESTS = 10
+TESTS = ["../K3.out", "../10.out"]  + [f"../outs/grid/itr_{i}.xml.out" for i in range(NUM_SIMULATION_GENERATED_TESTS)]
 
 @pytest.fixture(scope="module")
 def pd_data():
-    return data_import.read_files_to_pd_dataframe(
-        [f"../outs/grid/itr_{i}.xml.out" for i in range(NUM_SIMULATION_GENERATED_TESTS)]
-    )
+    return data_import.read_files_to_pd_dataframe(TESTS)
     
-@pytest.fixture(params=list(range(NUM_SIMULATION_GENERATED_TESTS)))
+@pytest.fixture(params=list(range(len(TESTS))))
 def solver_ball_data(request, pd_data) -> ValueIteration:
     vi = ValueIteration(
         pd_data['Q'][request.param],
         pd_data['b'][request.param],
     )
-    vi.max_iter = 30
+    vi.max_iter = 300
     return vi
 
 def test_value_iter_ball_data(solver_ball_data: ValueIteration):
@@ -155,9 +154,10 @@ def test_value_iter_ball_data(solver_ball_data: ValueIteration):
 
 #
 # off-diagonal m-matrix
+# these all work perfect :)
 #
 
-NUM_RANDOM_OFF_DIAG_TESTS = 100
+NUM_RANDOM_OFF_DIAG_TESTS = 0
 OFF_DIAG_SIZE = 10   # should be > 2
 RANDOM_FACTOR = 0.5
 

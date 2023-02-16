@@ -253,6 +253,7 @@ def read_file_to_pd_dataframe(f_name, tol = 1e-06, print_status = False):
     file_data = read_data(f_name)
     if file_data == None:
         return None
+    print(file_data)
     pd_data = pd.DataFrame(file_data)
     perform_calcs_on_dataframe(pd_data, tol)
     return pd_data
