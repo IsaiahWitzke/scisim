@@ -1,4 +1,4 @@
-from typing import List, Optional, Type
+from typing import Optional, Type
 import numpy as np
 import pandas as pd
 
@@ -10,17 +10,23 @@ class IteratorABC(object):
         b: np.ndarray,
         init_value: Optional[np.ndarray] = None,
         max_iter = 2000,
-        convergence_tol = 1e-05
+        convergence_tol = 1e-05,
+        *args,
+        **kwargs,
     ) -> None:
         self.Q = Q
         self.b = b
         if init_value is None:
             init_value = np.zeros(len(b))
         self.value = init_value.copy()
-        self.intermediate_values = [init_value.copy()]
-        self.intermediate_objective = [self.objective()]
         self.max_iter = max_iter
         self.convergence_tol = convergence_tol
+        self.name = kwargs.get("name", "Iterator")
+        self.policy = kwargs.get('initial_policy', np.ones(len(self.b))).copy()
+
+        self.intermediate_values = [init_value.copy()]
+        self.intermediate_policies = [self.policy.copy()]
+        self.intermediate_objective = [self.objective()]
 
     def flow(self):
         raise NotImplementedError()
@@ -34,10 +40,24 @@ class IteratorABC(object):
         """
         for i in range(self.max_iter):
             self.flow()
+            self.intermediate_objective.append(self.objective())
+            self.intermediate_values.append(self.value.copy())
+            self.intermediate_policies.append(self.policy.copy())
             if abs(self.objective()) < self.convergence_tol:
-                print(f"CONVERGED IN {i} ITERATIONS")
+                # print(f"{self.name}: CONVERGED IN {i} ITERATIONS")
                 return True
-        print("ERROR: reached max iterations")
+            
+            # try to search for a previous policy that we've already come across...
+            # if we can find one that means we are in a loop and can just quit now
+            for i in range(len(self.intermediate_values) - 1):
+                if np.allclose(self.intermediate_values[i], self.intermediate_values[-1]):
+                    a = len(self.intermediate_values) - 1
+                    print(f"{self.name}: DIVERGING CYCLE FROM {i} to {a} (length: {a - i})")
+                    for j in range(i, a):
+                        print(self.intermediate_values[j])
+                    return False
+            
+        print(f"{self.name}: reached max iterations")
         return False
 
 class SolverApplier(object):

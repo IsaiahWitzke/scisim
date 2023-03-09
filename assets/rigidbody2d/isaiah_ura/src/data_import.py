@@ -21,7 +21,8 @@ def read_sparse_matrix(file):
     m_rows = int(size_data[1])
     m_cols = int(size_data[2])
     m = np.zeros((m_rows, m_cols))
-    for nnz_triple_str in file.readline().split():
+    l = file.readline().split()
+    for nnz_triple_str in l:
         i, j, val = nnz_triple_str[1:-1].split(',')
         i = int(i)
         j = int(j)
@@ -131,6 +132,7 @@ def lt_0_with_default(x, default):
 def f(x):
     # print(x)
     # TODO: sometimes x is a 1x1 matrix... eig breaks on that case!
+    return []
     return np.linalg.eig(x)[0]
 
 def get_kinetic_energy_delta(pd_data, i):
@@ -165,7 +167,7 @@ def perform_calcs_on_dataframe(pd_data, tol = 1e-06, print_status = False):
     eigenvalues = [f(x) for x in pd_data['Q']]
     if print_status:
         print("condition numbers...")
-    cond_num = [np.linalg.cond(x) for x in pd_data['Q']]
+    cond_num = [(np.linalg.cond(x) if x.ndim > 1 else 1) for x in pd_data['Q']]
 
     # many of the columns are just a scaled colum from the identity matrix (i.e.
     # all rows of col i are 0 except for row i). We care about the interesting columns...
@@ -180,6 +182,10 @@ def perform_calcs_on_dataframe(pd_data, tol = 1e-06, print_status = False):
     thetas = []
     min_theta = []
     for x in pd_data['Q']:
+        if x.ndim <= 1:
+            thetas.append([])
+            min_theta.append(0)
+            continue
         new_thetas = []
         for row in range(x.shape[0]):
             for col in range(x.shape[1]):
@@ -208,7 +214,7 @@ def perform_calcs_on_dataframe(pd_data, tol = 1e-06, print_status = False):
     pd_data['Q_inv'] = Q_inv
     pd_data['Q_inv_min_val'] = Q_inv_min_val
     pd_data['Q_inv_num_lt_0'] = Q_inv_num_lt_0
-    pd_data['Q_det'] = [np.linalg.det(Q) for Q in pd_data['Q']]
+    pd_data['Q_det'] = [np.linalg.det(Q) if Q.ndim > 1 else 1 for Q in pd_data['Q']]
     pd_data['eigenvalues'] = eigenvalues
     pd_data['cond_num'] = cond_num
 
@@ -231,7 +237,8 @@ def perform_calcs_on_dataframe(pd_data, tol = 1e-06, print_status = False):
     ]
 
     pd_data['ipopt_delta_KE'] = [
-        get_kinetic_energy_delta(pd_data, i) for i in range(len(pd_data))
+        0 for i in range(len(pd_data))
+        # get_kinetic_energy_delta(pd_data, i) for i in range(len(pd_data))
     ]
 
     policies = []
@@ -253,7 +260,6 @@ def read_file_to_pd_dataframe(f_name, tol = 1e-06, print_status = False):
     file_data = read_data(f_name)
     if file_data == None:
         return None
-    print(file_data)
     pd_data = pd.DataFrame(file_data)
     perform_calcs_on_dataframe(pd_data, tol)
     return pd_data

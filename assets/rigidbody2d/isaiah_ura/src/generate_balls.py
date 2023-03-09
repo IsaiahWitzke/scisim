@@ -5,8 +5,8 @@ import random
 import os
 import sys
 
-if len(sys.argv) == 3:
-    OUTPUT_DIR = sys.argv[2]
+if len(sys.argv) == 2:
+    OUTPUT_DIR = sys.argv[1]
 else:
     print("Usage: python generate_balls.py <path to output folder>")
     exit()
@@ -21,18 +21,17 @@ class Ball:
     def to_xml(self):
         return f'  <rigid_body x="{self.q[0]} {self.q[1]}" theta="0" v="{self.v[0]} {self.v[1]}" omega="0" rho="{1 / math.pi}" r="{self.r}" geo_idx="0"/>'
 
-def create_xml(grid_size, name, r = 1):
+def create_xml(grid_size, name, r = 1, spacing=1.0):
 
     # ball_sep = plane_size / grid_size * 2 * math.sqrt(2)
     balls = []
     s2 = math.sqrt(2)
     for x_coord in range(grid_size):
         for y_coord in range(grid_size):
-            s = 0.1
             pert_factor = 0.01
             balls.append(
                 Ball(
-                    (s*x_coord*r + pert_factor*random.random(), s*y_coord*r + pert_factor*random.random()),
+                    (spacing*x_coord*r + pert_factor*random.random(), spacing*y_coord*r + pert_factor*random.random()),
                     r,
                     (random.random() * 2 - 1, random.random() * 2 - 1)
                 )
@@ -83,4 +82,5 @@ def generate_ok_simulations():
     for itr in range(50):
         create_xml(2, f"ok_itr_{itr}")
 
-generate_ok_simulations
+if __name__ == "__main__":
+    generate_ok_simulations()

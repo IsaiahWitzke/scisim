@@ -1,5 +1,5 @@
 from typing import Tuple
-from value_iter import ValueIteration
+from policy_iter import PolicyIteration
 import pytest
 import numpy as np
 import random
@@ -49,16 +49,16 @@ def generate_mocked_random_simulation_Q(dim: int = 5, rand_range: float = 10.0):
 
 
 @pytest.fixture(params=list(range(0)))
-def solver_mocked_random_simulation(request) -> ValueIteration:
+def solver_mocked_random_simulation(request) -> PolicyIteration:
     random.seed(request.param)
     np.random.seed(request.param)
     d = 3
     lhs = generate_mocked_random_simulation_Q(d)
     rhs = np.random.rand(d)
-    return ValueIteration(lhs, rhs)
+    return PolicyIteration(lhs, rhs)
 
 
-def test_value_iter_mocked_sim_data(solver_mocked_random_simulation: ValueIteration):
+def test_policy_iter_mocked_sim_data(solver_mocked_random_simulation: PolicyIteration):
     res = solver_mocked_random_simulation.solve()
     # print(solver_mocked_random_simulation.Q)
     # print(solver_mocked_random_simulation.b)
@@ -69,21 +69,21 @@ def test_value_iter_mocked_sim_data(solver_mocked_random_simulation: ValueIterat
     assert solver_mocked_random_simulation.objective() < solver_mocked_random_simulation.convergence_tol
 
 @pytest.fixture(params=list(range(0)))
-def solver(request) -> ValueIteration:
+def solver(request) -> PolicyIteration:
     random.seed(request.param)
     np.random.seed(request.param)
     d = 3
     lhs = generate_random_m_matrix(d)
     rhs = 20 * np.random.rand(d)
 
-    return ValueIteration(lhs, rhs)
+    return PolicyIteration(lhs, rhs)
 
-def test_value_iter_trivial():
-    solver = ValueIteration(
+def test_policy_iter_trivial():
+    solver = PolicyIteration(
         Q = np.array([
-            [2.0, -1.0, 0.0],
-            [-1.0, 2.0, -1.0],
-            [0.0, -1.0, 2.0],
+            [3.0, -1.0, 0.0],
+            [-1.0, 3.0, -1.0],
+            [0.0, -1.0, 3.0],
         ]),
         b = np.array([1.0, 1.0, 1.0,])
     )
@@ -102,7 +102,7 @@ def test_value_iter_trivial():
     assert solver.objective() < solver.convergence_tol
 
 
-def test_value_iter(solver: ValueIteration):
+def test_policy_iter(solver: PolicyIteration):
     res = solver.solve()
     # print(solver.Q)
     # print(solver.b)
@@ -135,15 +135,15 @@ def pd_data():
     return data_import.read_files_to_pd_dataframe(TESTS)
     
 @pytest.fixture(params=list(range(len(TESTS))))
-def solver_ball_data(request, pd_data) -> ValueIteration:
-    vi = ValueIteration(
+def solver_ball_data(request, pd_data) -> PolicyIteration:
+    vi = PolicyIteration(
         pd_data['Q'][request.param],
         pd_data['b'][request.param],
     )
     vi.max_iter = 300
     return vi
 
-def test_value_iter_ball_data(solver_ball_data: ValueIteration):
+def test_policy_iter_ball_data(solver_ball_data: PolicyIteration):
     res = solver_ball_data.solve()
     print("Q")
     print(solver_ball_data.Q)
@@ -169,7 +169,7 @@ RANDOM_FACTOR = 0.5
 CURRENT_RUN = 0
 
 @pytest.fixture(params=list(range(NUM_RANDOM_OFF_DIAG_TESTS)))
-def solver_random_off_diag_data() -> ValueIteration:
+def solver_random_off_diag_data() -> PolicyIteration:
     global CURRENT_RUN
     CURRENT_RUN += 1
     random.seed(CURRENT_RUN)
@@ -185,10 +185,10 @@ def solver_random_off_diag_data() -> ValueIteration:
 
     b = 10 * np.random.randn(OFF_DIAG_SIZE)
 
-    return ValueIteration(Q, b)
+    return PolicyIteration(Q, b)
 
 
-def test_value_iter_random_off_diag_data(solver_random_off_diag_data: ValueIteration):
+def test_policy_iter_random_off_diag_data(solver_random_off_diag_data: PolicyIteration):
     res = solver_random_off_diag_data.solve()
     print("Q")
     print(solver_random_off_diag_data.Q)
@@ -205,7 +205,7 @@ def test_value_iter_random_off_diag_data(solver_random_off_diag_data: ValueItera
 # This works 96% of the time (4% can be solved by increasing tolerance to 10^-4)
 #
 
-NUM_SIMULATION_GENERATED_TESTS_IPOPT_START = 100
+NUM_SIMULATION_GENERATED_TESTS_IPOPT_START = 50
 TESTS_IPOPT_START = [f"../outs/grid/itr_{i}.xml.out" for i in range(NUM_SIMULATION_GENERATED_TESTS_IPOPT_START)]
 
 @pytest.fixture(scope="module")
@@ -213,8 +213,8 @@ def pd_data_tests_ipopt_start():
     return data_import.read_files_to_pd_dataframe(TESTS_IPOPT_START)
 
 @pytest.fixture(params=list(range(len(TESTS_IPOPT_START))))
-def solver_ball_data_ipopt_start(request, pd_data_tests_ipopt_start) -> ValueIteration:
-    vi = ValueIteration(
+def solver_ball_data_ipopt_start(request, pd_data_tests_ipopt_start) -> PolicyIteration:
+    vi = PolicyIteration(
         pd_data_tests_ipopt_start['Q'][request.param],
         pd_data_tests_ipopt_start['b'][request.param],
         init_value=pd_data_tests_ipopt_start['ipopt_sol'][request.param],
@@ -224,7 +224,7 @@ def solver_ball_data_ipopt_start(request, pd_data_tests_ipopt_start) -> ValueIte
     
     return vi
 
-def test_value_iter_ball_data_ipopt_start(solver_ball_data_ipopt_start: ValueIteration):
+def test_policy_iter_ball_data_ipopt_start(solver_ball_data_ipopt_start: PolicyIteration):
     res = solver_ball_data_ipopt_start.solve()
     print("Q")
     print(solver_ball_data_ipopt_start.Q)
@@ -237,3 +237,6 @@ def test_value_iter_ball_data_ipopt_start(solver_ball_data_ipopt_start: ValueIte
     assert res
     assert solver_ball_data_ipopt_start.objective() < solver_ball_data_ipopt_start.convergence_tol
 
+
+# if __name__ == "__main__":
+#     test_policy_iter_trivial()

@@ -23,18 +23,26 @@ LCPOperatorPI::LCPOperatorPI(std::istream &input_stream)
 // Returns the error of our solution
 scalar getPolicy(const SparseMatrixsc &Q, const VectorXs &x, const VectorXs &b, SparseMatrixsc &policy)
 {
-  scalar err2 = 0;
+  scalar err2 = 0;  // ignore
+
   VectorXs y = Q * x + b;
   for (int i = 0; i < x.size(); ++i) {
     scalar choice;
+    /*
+    this is where we choose the ith policy (policy improvement)...
+    in the paper you sent me it was saying that the "policy choosing" step was
+    really just an argmin step, but here there's just 1 simple if/else statement!?
+    My question is: if we know that the matrix Q is diagonally dominant, then does this
+    if/else statement suffice as an argmin
+    */
     if (y(i) < x(i))
-      choice = 1;
+      choice = 1; // consider the ith lambda as a that can be changed in the policy evaluation step
     else
-      choice = 0;
-    err2 += fmin(x(i), y(i)) * fmin(x(i), y(i));
+      choice = 0; // this will set the ith lambda to 0 in the policy iteration step
+    err2 += fmin(x(i), y(i)) * fmin(x(i), y(i));  // ignore
     policy.coeffRef(i, i) = choice;
   }
-  return sqrt(err2);
+  return sqrt(err2);  // ignore
 }
 
 void updateValue(const SparseMatrixsc &policy, const SparseMatrixsc &Q, const VectorXs &b, VectorXs &x)

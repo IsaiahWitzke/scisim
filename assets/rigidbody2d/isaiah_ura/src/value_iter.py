@@ -38,6 +38,3 @@ class ValueIteration(IteratorABC):
         # # save the last value for debugging purposes
         # # update value
         # self.value = -np.amin(next_values,axis=1)
-
-        self.intermediate_objective.append(self.objective())
-        self.intermediate_values.append(self.value.copy())
