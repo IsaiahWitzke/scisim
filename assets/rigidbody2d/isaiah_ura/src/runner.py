@@ -5,7 +5,7 @@ if len(sys.argv) == 3:
     INPUT_DIR = sys.argv[1]
     OUT_DIR = sys.argv[2]
 else:
-    print("Usage: python generate_balls.py <path to output folder>")
+    print("Usage: python runner.py <path to input folder> <path to output folder>")
     exit()
 
 if 'RIGID_BODY_2D_CLI' in os.environ:

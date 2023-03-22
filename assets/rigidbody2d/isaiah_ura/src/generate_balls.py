@@ -56,8 +56,8 @@ def create_xml(grid_size, name, r = 1, spacing=1.0):
     
       <integrator type="symplectic_euler" dt="0.01"/>
     
-      <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
-        <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-6"/>
+      <impact_operator type="gr" CoR="1.0" v_tol="1.0e-12" cache_impulses="0">
+        <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-12"/>
       </impact_operator>
     
       <near_earth_gravity f="0.0 0.0"/>
@@ -79,8 +79,8 @@ def create_xml(grid_size, name, r = 1, spacing=1.0):
 #     create_xml(2, f"itr_{itr}")
 
 def generate_ok_simulations():
-    for itr in range(50):
-        create_xml(2, f"ok_itr_{itr}")
+    for itr in range(500):
+        create_xml(3, f"ok_itr_{itr}")
 
 if __name__ == "__main__":
     generate_ok_simulations()

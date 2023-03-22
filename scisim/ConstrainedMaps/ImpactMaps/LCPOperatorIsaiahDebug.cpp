@@ -77,7 +77,8 @@ void printMatrix(SparseMatrixsc m, std::string name) {
     {
       for (SparseMatrixsc::InnerIterator it(m,k); it; ++it)
       {
-        std::cout << "(" << it.row() << "," << it.col() << "," << it.value() << ") ";
+        std::cout.precision(12);
+        std::cout << "(" << it.row() << "," << it.col() << "," << std::fixed << double(it.value()) << ") ";
       }
     }
 
@@ -88,7 +89,8 @@ void printVector(VectorXs v, std::string name) {
   std::cout << "size: " << v.rows() << " " << v.cols() << std::endl; 
 
   for (int row=0; row < v.rows(); ++row) {
-    std::cout << "(" << row << "," << 0 << "," << v(row) << ") ";
+    std::cout.precision(12);
+    std::cout << "(" << row << "," << 0 << "," << std::fixed << double(v(row)) << ") ";
   }
 
   std::cout << std::endl;

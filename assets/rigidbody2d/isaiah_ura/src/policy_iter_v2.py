@@ -1,9 +1,9 @@
 from typing import Optional
 import numpy as np
 import scipy
-from solver_base import IteratorABC
+from solver_base import IteratorABC, gen_random_policy
 
-class PolicyIteration(IteratorABC):
+class PolicyIterationV2(IteratorABC):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__( *args, **kwargs )
         self.max_iter = 10
@@ -31,17 +31,15 @@ class PolicyIteration(IteratorABC):
         cg_soln = scipy.sparse.linalg.cg(A , rhs , tol=1e-12)[0]
         self.value = cg_soln
 
-    def flow(self) -> bool:
-        # try to search for a previous policy that we've already come across...
-        # if we can find one that means we are in a loop and can just quit now
-        for i in range(len(self.intermediate_values) - 1):
-            if np.allclose(self.intermediate_values[i], self.intermediate_values[-1]):
-                a = len(self.intermediate_values) - 1
-                print(f"{self.name}: DIVERGING CYCLE FROM {i} to {a} (length: {a - i})")
-                # for j in range(i, a):
-                #     print(self.intermediate_values[j])
-                return False
-
+    def flow(self):
         self._update_value()
         self._update_policy()
+
+        # try to search for a previous policy that we've already come across...
+        # if we can find one that means we are in a loop!
+        # So we randomize and try again
+        for i in range(len(self.intermediate_values) - 1):
+            if np.allclose(self.intermediate_values[i], self.value):
+                self.policy = gen_random_policy(len(self.b))
+                self.value = np.zeros(len(self.b))
         return True

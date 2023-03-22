@@ -1,7 +1,14 @@
 from typing import Optional, Type
 import numpy as np
 import pandas as pd
+import random
 
+random.seed(123)
+
+def gen_random_policy(size: int) -> np.ndarray:
+    return np.array([
+        1.0 if random.random() > 0.5 else 0.0 for _ in range(size)
+    ])
 
 class IteratorABC(object):
     def __init__(
@@ -10,7 +17,7 @@ class IteratorABC(object):
         b: np.ndarray,
         init_value: Optional[np.ndarray] = None,
         max_iter = 2000,
-        convergence_tol = 1e-05,
+        convergence_tol = 1e-06,
         *args,
         **kwargs,
     ) -> None:
@@ -28,34 +35,29 @@ class IteratorABC(object):
         self.intermediate_policies = [self.policy.copy()]
         self.intermediate_objective = [self.objective()]
 
-    def flow(self):
+    def flow(self) -> bool:
         raise NotImplementedError()
     
     def objective(self):
         raise NotImplementedError()
     
-    def solve(self):
+    def solve(self, debug_logs = ["diverge", "converge"]):
         """
         Returns True if was able to converge, False otherwise
         """
         for i in range(self.max_iter):
-            self.flow()
+            if not self.flow():
+                if "diverge" in debug_logs:
+                    print(f"{self.name}: DIVERGED AT ITERATION {i}")
+                return False
             self.intermediate_objective.append(self.objective())
             self.intermediate_values.append(self.value.copy())
             self.intermediate_policies.append(self.policy.copy())
             if abs(self.objective()) < self.convergence_tol:
-                # print(f"{self.name}: CONVERGED IN {i} ITERATIONS")
+                if "converge" in debug_logs:
+                    print(f"{self.name}: CONVERGED IN {i} ITERATIONS")
                 return True
             
-            # try to search for a previous policy that we've already come across...
-            # if we can find one that means we are in a loop and can just quit now
-            for i in range(len(self.intermediate_values) - 1):
-                if np.allclose(self.intermediate_values[i], self.intermediate_values[-1]):
-                    a = len(self.intermediate_values) - 1
-                    print(f"{self.name}: DIVERGING CYCLE FROM {i} to {a} (length: {a - i})")
-                    for j in range(i, a):
-                        print(self.intermediate_values[j])
-                    return False
             
         print(f"{self.name}: reached max iterations")
         return False
