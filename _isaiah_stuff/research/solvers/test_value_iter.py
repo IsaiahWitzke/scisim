@@ -3,7 +3,7 @@ from _isaiah_stuff.research.solvers.value_iter import ValueIteration
 import pytest
 import numpy as np
 import random
-import data_import
+import _isaiah_stuff.research.util.data_import as data_import
 
 
 def generate_random_m_matrix(dim: int = 5, rand_range: float = 10.0):
