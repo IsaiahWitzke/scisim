@@ -11,6 +11,10 @@
 #include "LCPOperatorIpopt.h"
 #include "LCPOperatorPenalty.h"
 #include "LCPOperatorPI.h"
+#include "LCPOperatorPIv2.h"
+#include "scisim/ConstrainedMaps/IpoptUtilities.h"
+#include "scisim/Utilities.h"
+#include "scisim/StringUtilities.h"
 
 class LCPOperatorIsaiahDebug final : public ImpactOperator {
 
@@ -35,7 +39,8 @@ private:
     const unsigned max_iters;
     std::unique_ptr<LCPOperatorIpopt> ipopt_solver;
     std::unique_ptr<LCPOperatorPI> policy_solver;
-    std::unique_ptr<LCPOperatorPenalty> penalty_solver;
+    std::unique_ptr<LCPOperatorPIv2> policy_solver_v2;
+    std::unique_ptr<LCPOperatorPenalty> penalty_solver; // we don't do anything with this right now
 };
 
 

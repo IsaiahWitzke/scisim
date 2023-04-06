@@ -1,12 +1,11 @@
 from typing import Optional
 import numpy as np
 import scipy
-from solver_base import IteratorABC
+from solvers.solver_base import IteratorABC
 
 class PolicyIteration(IteratorABC):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__( *args, **kwargs )
-        self.max_iter = 10
     
     def objective(self):
         return np.linalg.norm(np.minimum(self.Q @ self.value - self.b, self.value))

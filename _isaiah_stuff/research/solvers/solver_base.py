@@ -16,8 +16,8 @@ class IteratorABC(object):
         Q: np.ndarray,
         b: np.ndarray,
         init_value: Optional[np.ndarray] = None,
-        max_iter = 2000,
-        convergence_tol = 1e-06,
+        max_iter = 200,
+        convergence_tol = 1e-10,
         *args,
         **kwargs,
     ) -> None:
@@ -47,8 +47,8 @@ class IteratorABC(object):
         """
         for i in range(self.max_iter):
             if not self.flow():
-                if "diverge" in debug_logs:
-                    print(f"{self.name}: DIVERGED AT ITERATION {i}")
+                # if "diverge" in debug_logs:
+                #     print(f"{self.name}: DIVERGED AT ITERATION {i}")
                 return False
             self.intermediate_objective.append(self.objective())
             self.intermediate_values.append(self.value.copy())

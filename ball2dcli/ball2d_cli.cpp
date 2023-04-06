@@ -728,7 +728,7 @@ int main( int argc, char** argv )
 
   if( g_end_time == SCALAR_INFINITY )
   {
-    std::cout << "No end time specified. Simulation will run indefinitely." << std::endl;
+    std::cerr << "No end time specified. Simulation will run indefinitely." << std::endl;
   }
 
   return executeSimLoop();

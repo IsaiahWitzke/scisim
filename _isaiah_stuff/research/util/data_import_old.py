@@ -1,18 +1,32 @@
-from jsoncomment import JsonComment
-json = JsonComment()
 import math
 import numpy as np
 import pandas as pd
 import re
 
-def read_sparse_matrix(m_json):
-    m_rows = m_json['shape'][0]
-    m_cols = m_json['shape'][1]
+def read_sparse_matrix(file):
+    """
+    reads in matrix via non-zero entry triples
+    ex input:
+    size: 3 3
+    (0,0,123) (1,1,5) (2,1,-23)
+    
+    should output a matrix like:
+    np.array([
+        [123, 0,   0],
+        [0,   5,   0],
+        [0,   -23, 0]
+    ])
+    """
+    size_data = file.readline().split() # ["size:", "<rows>", "<cols>"]
+    m_rows = int(size_data[1])
+    m_cols = int(size_data[2])
     m = np.zeros((m_rows, m_cols))
-    for nnz_triple_str in m_json['data']:
-        i = nnz_triple_str[0]
-        j = nnz_triple_str[1]
-        val = nnz_triple_str[2]
+    l = file.readline().split()
+    for nnz_triple_str in l:
+        i, j, val = nnz_triple_str[1:-1].split(',')
+        i = int(i)
+        j = int(j)
+        val = float(val)
         m[i,j] = val
     
     # if the number of columns == 1, then this was a vector we just read in... output a 1D numpy array
@@ -43,26 +57,49 @@ def read_square_matrix(file):
 
 
 def read_data(f_path):
+    data = {
+        'N': [],
+        'Q': [],
+        'v0': [],
+        'Minv': [],
+        'M': [],
+        'ipopt_sol': [],
+        'policy_sol': [],
+        'policy_converged': [],
+        'ipopt_converged': [],
+        'f_name':[]
+    }
     with open(f_path) as f:
-        f_str = f.read().replace(' ', '')
-        f_data = json.loads(f_str)
-        Minv = read_sparse_matrix(f_data['Minv'])
-        data = {
-            'N': [read_sparse_matrix(f_data['N'])],
-            'Q': [read_sparse_matrix(f_data['Q'])],
-            'v0': [read_sparse_matrix(f_data['v0'])],
-            'Minv': [Minv],
-            'ipopt_sol': [read_sparse_matrix(f_data['ipopt_sol'])],
-            'policy_sol': [read_sparse_matrix(f_data['policy_sol'])],
-            'ipopt_converged': [f_data['ipopt_converges']],
-            'policy_converged': [f_data['policy_converges']],
-            'policy_v2_converged': [f_data['policy_v2_converges']],
-            'ipopt_time': [f_data['ipopt_time']],
-            'policy_time': [f_data['pi_time']],
-            'policy_v2_time': [f_data['pi_v2_time']],
-            'f_name':[f_path]
-        }
-        return data
+        while True:
+            line = f.readline()
+            # no collision happened in the simulation
+            if re.match("^Simulation complete", line):
+                return None
+            if not line:
+                data['f_name'] = [f_path] * len(data['Q'])
+                return data
+            if re.match("^ipopt_sol:", line):
+                data['ipopt_sol'].append(read_sparse_matrix(f))
+            if re.match("^policy_sol:", line):
+                data['policy_sol'].append(read_sparse_matrix(f))
+            if re.match("^v0:", line):
+                data['v0'].append(read_sparse_matrix(f))
+            if re.match("^Minv:", line):
+                Minv = read_sparse_matrix(f)
+                data['Minv'].append(Minv.copy())
+                data['M'].append(np.linalg.inv(Minv))
+            if re.match("^N:", line):
+                data['N'].append(read_sparse_matrix(f))
+            if re.match("^Q:", line):
+                data['Q'].append(read_sparse_matrix(f))
+            if re.match("^ipopt_converges", line):
+                data['ipopt_converged'].append(
+                    bool(int(f.readline()))
+                )
+            if re.match("^policy_converges", line):
+                data['policy_converged'].append(
+                    bool(int(f.readline()))
+                )
 
 def inverse_with_default(x, default):
     """
@@ -224,11 +261,10 @@ def read_file_to_pd_dataframe(f_name, tol = 1e-06, print_status = False):
     if file_data == None:
         return None
     pd_data = pd.DataFrame(file_data)
-    pd_data['b'] = pd_data.apply(lambda r: -2 * r['N'].T @ r['v0'], axis=1)
-    # perform_calcs_on_dataframe(pd_data, tol)
+    perform_calcs_on_dataframe(pd_data, tol)
     return pd_data
 
-def read_files_to_pd_dataframe(f_names, tol = 1e-06, print_status = False):
-    data_frames = [read_file_to_pd_dataframe(f, tol, print_status) for f in f_names]
+def read_files_to_pd_dataframe(f_names, tol = 1e-06, print_satatus = False):
+    data_frames = [read_file_to_pd_dataframe(f, tol, print_satatus) for f in f_names]
     # print(data_frames)
     return pd.concat(data_frames).reset_index()

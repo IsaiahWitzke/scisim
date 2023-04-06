@@ -5,10 +5,11 @@ import random
 import os
 import sys
 
-if len(sys.argv) == 2:
-    OUTPUT_DIR = sys.argv[1]
+if len(sys.argv) == 3:
+    GRID_SIZE = int(sys.argv[1])
+    OUTPUT_DIR = sys.argv[2]
 else:
-    print("Usage: python generate_balls.py <path to output folder>")
+    print("Usage: python generate_balls.py <grid size> <path to output folder>")
     exit()
 
 
@@ -79,8 +80,8 @@ def create_xml(grid_size, name, r = 1, spacing=1.0):
 #     create_xml(2, f"itr_{itr}")
 
 def generate_ok_simulations():
-    for itr in range(500):
-        create_xml(3, f"ok_itr_{itr}")
+    for itr in range(50):
+        create_xml(GRID_SIZE, f"itr_{itr}")
 
 if __name__ == "__main__":
     generate_ok_simulations()

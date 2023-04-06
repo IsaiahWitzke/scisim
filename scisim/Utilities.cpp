@@ -7,60 +7,66 @@
 #include <string>
 #include <iostream>
 
-void Utilities::printSparseMatrixJson(SparseMatrixsc m, std::string name = "")
+void Utilities::printSparseMatrixJson(SparseMatrixsc m, std::string name, std::ostream& o)
 {
   if (name != "")
   {
-    std::cout << "\"" << name << "\": ";
+    o << "\"" << name << "\": ";
   }
-  std::cout << "{" << std::endl;
-  std::cout << "\"shape\": [" << m.rows() << ", " << m.cols() << "]," << std::endl;
+  o << "{" << std::endl;
+  o << "\"shape\": [" << m.rows() << ", " << m.cols() << "]," << std::endl;
 
-  std::cout << "\"data\": [";
+  o << "\"data\": [";
   for (int k = 0; k < m.outerSize(); ++k)
   {
     for (SparseMatrixsc::InnerIterator it(m, k); it; ++it)
     {
-      std::cout.precision(12);
-      std::cout << "[" << it.row() << "," << it.col() << "," << std::fixed << double(it.value()) << "], ";
+      o.precision(12);
+      o << "[" << it.row() << "," << it.col() << "," << std::fixed << double(it.value()) << "], ";
     }
   }
-  std::cout << "]" << std::endl;
-  std::cout << "}," << std::endl;
+  o << "]" << std::endl;
+  o << "}," << std::endl;
 }
 
-void Utilities::printVectorJson(VectorXs v, std::string name = "")
+void Utilities::printVectorJson(VectorXs v, std::string name, std::ostream& o)
 {
   if (name != "")
   {
-    std::cout << "\"" << name << "\": ";
+    o << "\"" << name << "\": ";
   }
-  std::cout << "{" << std::endl;
-  std::cout << "\"shape\": [" << v.rows() << ", " << v.cols() << "]," << std::endl;
+  o << "{" << std::endl;
+  o << "\"shape\": [" << v.rows() << ", " << v.cols() << "]," << std::endl;
 
-  std::cout << "\"data\": [";
+  o << "\"data\": [";
   for (int row = 0; row < v.rows(); ++row)
   {
-    std::cout.precision(12);
-    std::cout << "[" << row << "," << 0 << "," << std::fixed << double(v(row)) << "], ";
+    o.precision(12);
+    o << "[" << row << "," << 0 << "," << std::fixed << double(v(row)) << "], ";
   }
 
-  std::cout << "]" << std::endl;
-  std::cout << "}," << std::endl;
+  o << "]" << std::endl;
+  o << "}," << std::endl;
 }
 
-void Utilities::printBoolJson(bool b, std::string name)
+void Utilities::printBoolJson(bool b, std::string name, std::ostream& o)
 {
-  std::cout << "\"" << name << "\": ";
+  o << "\"" << name << "\": ";
   if (b)
   {
-    std::cout << "true";
+    o << "true";
   }
   else
   {
-    std::cout << "false";
+    o << "false";
   }
-  std::cout << "," << std::endl;
+  o << "," << std::endl;
+}
+
+void Utilities::printDoubleJson(double d, std::string name, std::ostream& o)
+{
+  // o.precision(12);
+  o << "\"" << name << "\": " << d << "," << std::endl;
 }
 
 //
