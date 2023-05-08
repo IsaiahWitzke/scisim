@@ -33,14 +33,19 @@ class PolicyIteration(IteratorABC):
     def flow(self) -> bool:
         # try to search for a previous policy that we've already come across...
         # if we can find one that means we are in a loop and can just quit now
-        for i in range(len(self.intermediate_values) - 1):
-            if np.allclose(self.intermediate_values[i], self.intermediate_values[-1]):
-                a = len(self.intermediate_values) - 1
-                print(f"{self.name}: DIVERGING CYCLE FROM {i} to {a} (length: {a - i})")
-                # for j in range(i, a):
-                #     print(self.intermediate_values[j])
+        for i in range(len(self.intermediate_policies) - 1):
+            if np.allclose(self.intermediate_policies[i], self.intermediate_policies[-1]):
+                a = len(self.intermediate_policies) - 1
+                # print(f"{self.name}: DIVERGING CYCLE FROM {i} to {a} (length: {a - i})")
+                self.pois = [i]
                 return False
+        
+        # for the first time through, we actually make a guess for the value so that we don't think that we diverge right away
+        if len(self.intermediate_values) == 1:
+            self._update_value()
+            self.intermediate_values[0] = self.value
 
-        self._update_value()
         self._update_policy()
+        self._update_value()
+
         return True

@@ -6,7 +6,6 @@ from solver_base import IteratorABC, gen_random_policy
 class PolicyIterationV2(IteratorABC):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__( *args, **kwargs )
-        self.max_iter = 10
     
     def objective(self):
         return np.linalg.norm(np.minimum(self.Q @ self.value - self.b, self.value))
@@ -40,6 +39,7 @@ class PolicyIterationV2(IteratorABC):
         # So we randomize and try again
         for i in range(len(self.intermediate_values) - 1):
             if np.allclose(self.intermediate_values[i], self.value):
+                self.pois.append(len(self.intermediate_policies))
                 self.policy = gen_random_policy(len(self.b))
                 self.value = np.zeros(len(self.b))
         return True

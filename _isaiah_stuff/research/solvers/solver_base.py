@@ -34,6 +34,8 @@ class IteratorABC(object):
         self.intermediate_values = [init_value.copy()]
         self.intermediate_policies = [self.policy.copy()]
         self.intermediate_objective = [self.objective()]
+        self.pois = []
+        self.converged = False
 
     def flow(self) -> bool:
         raise NotImplementedError()
@@ -41,26 +43,25 @@ class IteratorABC(object):
     def objective(self):
         raise NotImplementedError()
     
-    def solve(self, debug_logs = ["diverge", "converge"]):
+    def solve(self, debug_logs = ["diverge", "converge"]) -> None:
         """
         Returns True if was able to converge, False otherwise
         """
         for i in range(self.max_iter):
             if not self.flow():
-                # if "diverge" in debug_logs:
-                #     print(f"{self.name}: DIVERGED AT ITERATION {i}")
-                return False
+                if "diverge" in debug_logs:
+                    print(f"{self.name}: DIVERGED AT ITERATION {i}")
+                return
             self.intermediate_objective.append(self.objective())
             self.intermediate_values.append(self.value.copy())
             self.intermediate_policies.append(self.policy.copy())
             if abs(self.objective()) < self.convergence_tol:
                 if "converge" in debug_logs:
                     print(f"{self.name}: CONVERGED IN {i} ITERATIONS")
-                return True
-            
+                self.converged = True
+                return
             
         print(f"{self.name}: reached max iterations")
-        return False
 
 class SolverApplier(object):
     def __init__(self, solver: Type[IteratorABC], data: pd.DataFrame) -> None:
