@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1674102962 "/home/isaiah/scisim/_isaiah_stuff/mt_report.tex" "mt_report.pdf" "mt_report" 1674102962
-  "/home/isaiah/scisim/_isaiah_stuff/mt_report.tex" 1674102962 11545 6a8e0a76556fcd81e8f84291030a929e ""
+["pdflatex"] 1700624367 "/home/isaiah/scisim/_isaiah_stuff/writeup/mt_report.tex" "mt_report.pdf" "mt_report" 1700624367
+  "/home/isaiah/scisim/_isaiah_stuff/writeup/mt_report.tex" 1700624366 11521 733573e516e46034ea8133fcf8f3b121 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -62,8 +62,8 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1662995072 79177 6b585241e99bfabab94528118ed8b7f4 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1662995076 2365584 20505b95de050f45d2803c47c3c31422 ""
   "/usr/local/texlive/2022/texmf.cnf" 1662995071 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "mt_report.aux" 1674102962 588 bdc47ed76f3c0c6a8f70264233364351 "pdflatex"
-  "mt_report.tex" 1674102962 11545 6a8e0a76556fcd81e8f84291030a929e ""
+  "mt_report.aux" 1700624367 588 bdc47ed76f3c0c6a8f70264233364351 "pdflatex"
+  "mt_report.tex" 1700624366 11521 733573e516e46034ea8133fcf8f3b121 ""
   (generated)
   "mt_report.aux"
   "mt_report.log"

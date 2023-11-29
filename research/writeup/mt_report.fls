@@ -1,8 +1,8 @@
-PWD /home/isaiah/scisim/_isaiah_stuff
+PWD /home/isaiah/scisim/_isaiah_stuff/writeup
 INPUT /usr/local/texlive/2022/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /home/isaiah/scisim/_isaiah_stuff/mt_report.tex
+INPUT /home/isaiah/scisim/_isaiah_stuff/writeup/mt_report.tex
 OUTPUT mt_report.log
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls
