@@ -97,7 +97,8 @@ void LCPOperatorIsaiahDebug::flow(
   auto pi_end = std::chrono::steady_clock::now();
 
   auto pi2_start = std::chrono::steady_clock::now();
-  policy_solver_v2->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, policy_sol_v2);
+  // v2 is in a broken state -- probably not needed anymore though!
+  // policy_solver_v2->flow(cons, M, Minv, q0, v0, v0F, N, Q, nrel, CoR, policy_sol_v2);
   if (getEndError(Q, policy_sol_v2, b) <= m_tol)
     policy_v2_converges = true;
   auto pi2_end = std::chrono::steady_clock::now();
@@ -137,7 +138,10 @@ void LCPOperatorIsaiahDebug::flow(
 
   // we will just always use ipopt solution here
   alpha = ipopt_sol;
-  exit(0);  // temp exit for debugging purposes
+  // temp exit for debugging purposes...
+  // we only want to output & analyze one collision at a time,
+  // so letting the simulation run more would just produce more data that we won't use
+  exit(0);
 }
 
 std::string LCPOperatorIsaiahDebug::name() const
