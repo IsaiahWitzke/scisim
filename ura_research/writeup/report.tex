@@ -74,7 +74,9 @@ There's a lot of different scene files that you can use in the \texttt{ura\_rese
 There's also some left-over scenes under the
 \\\texttt{ura\_research/src/archive/old\_simulation\_data/} directory,
 but these probably aren't very interesting nor useful anymore.
-Finally, the creators of Scisim left some interesting scenes in \texttt{assets/rigidbody2d/} that are fun to play around with.
+Finally, the creators of Scisim left some interesting scenes in \texttt{assets/rigidbody2d/} that are fun to play around with
+(although you will need to change the \texttt{linear\_solver} part to be only: \texttt{linear\_solvers="ma27 ma86"},
+otherwise you'll get some hsl-related errors)
 
 These scene xml files define the objects (balls, walls, etc...) in the simulation and their initial properties
 (positions, velocities, masses, coefficients of restitutions, etc...).
