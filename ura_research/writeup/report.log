@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  1 JUN 2024 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  3 JUN 2024 21:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -86,6 +86,24 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen148
+\Gin@req@width=\dimen149
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -109,9 +127,6 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks21
 ) (/usr/local/texlive/2022/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 ) (/usr/local/texlive/2022/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -135,7 +150,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count271
 )
-\@linkdim=\dimen148
+\@linkdim=\dimen150
 \Hy@linkcounter=\count272
 \Hy@pagecounter=\count273
  (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/pd1enc.def
@@ -166,15 +181,15 @@ Package hyperref Info: Bookmarks ON on input line 4408.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4746.
-\XeTeXLinkMargin=\dimen149
+\XeTeXLinkMargin=\dimen151
  (/usr/local/texlive/2022/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/local/texlive/2022/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count276
-\Field@Width=\dimen150
-\Fld@charsize=\dimen151
+\Field@Width=\dimen152
+\Fld@charsize=\dimen153
 Package hyperref Info: Hyper figures OFF on input line 6024.
 Package hyperref Info: Link nesting OFF on input line 6029.
 Package hyperref Info: Hyper index ON on input line 6032.
@@ -214,113 +229,318 @@ File: l3backend-pdftex.def 2022-08-30 L3 backend support: PDF output (pdfTeX)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-Package hyperref Info: Link coloring OFF on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+ (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count283
+\scratchdimen=\dimen154
+\scratchbox=\box54
+\nofMPsegments=\count284
+\nofMParguments=\count285
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count286
+\MPscratchDim=\dimen155
+\MPnumerator=\count287
+\makeMPintoPDFobject=\count288
+\everyMPtoPDFconversion=\toks23
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package hyperref Info: Link coloring OFF on input line 16.
  (./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--24
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (3.2658pt too wide) in paragraph at lines 28--38
+Overfull \hbox (3.2658pt too wide) in paragraph at lines 39--49
 \OT1/cmr/m/n/12 classes (see the \OT1/cmtt/m/n/12 scisim/ConstrainedMaps/ImpactMaps/ \OT1/cmr/m/n/12 folder). More specif-
- []
-
-
-Overfull \hbox (17.44646pt too wide) in paragraph at lines 56--58
-\OT1/cmr/m/n/12 com-pile the code. Then to start a sim-u-la-tion, run the com-piled \OT1/cmtt/m/n/12 rigidbody2d[]qt4
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--58
-
  []
 
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (42.25021pt too wide) in paragraph at lines 60--60
+Overfull \hbox (17.44646pt too wide) in paragraph at lines 67--69
+\OT1/cmr/m/n/12 com-pile the code. Then to start a sim-u-la-tion, run the com-piled \OT1/cmtt/m/n/12 rigidbody2d[]qt4
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
+
+ []
+
+
+Overfull \hbox (42.25021pt too wide) in paragraph at lines 71--71
 []\OT1/cmtt/m/n/12 ./rigidbody2d_qt4 ../../ura_research/scenes/simple/10_balls_in_box.xml[] 
  []
 
 
-Overfull \hbox (39.16092pt too wide) in paragraph at lines 62--67
+Overfull \hbox (39.16092pt too wide) in paragraph at lines 73--78
 []\OT1/cmr/m/n/12 There's a lot of dif-fer-ent scene files that you can use in the \OT1/cmtt/m/n/12 ura[]research/scenes/
  []
 
 
-Overfull \hbox (12.91594pt too wide) in paragraph at lines 62--67
+Overfull \hbox (12.91594pt too wide) in paragraph at lines 73--78
 \OT1/cmtt/m/n/12 ura[]research/src/archive/old[]simulation[]data/ \OT1/cmr/m/n/12 di-rec-tory, but these prob-
  []
 
 [2]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 100.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 111.
  [3]
-Overfull \hbox (17.5502pt too wide) in paragraph at lines 150--150
+Overfull \hbox (104.49982pt too wide) in paragraph at lines 139--149
+\OT1/cmr/m/n/12 enough $[]$). For in-stance, many of the note-books like \OT1/cmtt/m/n/12 ura[]research/src/archive/<date>.ipynb
+ []
+
+
+Overfull \hbox (17.5502pt too wide) in paragraph at lines 161--161
 []\OT1/cmtt/m/n/12 ./rigidbody2d_qt4 ../../ura_research/scenes/simple/2_balls.xml > \[] 
  []
 
 
-Overfull \hbox (101.66992pt too wide) in paragraph at lines 152--158
+Overfull \hbox (101.66992pt too wide) in paragraph at lines 167--175
 \OT1/cmr/m/n/12 pan-das dataframe. The ma-tri-ces and vec-tors that are passed to \OT1/cmtt/m/n/12 LCPOperatorIsaiahDebug::flow
  []
 
-
-Overfull \hbox (81.62283pt too wide) in paragraph at lines 159--162
-[]\OT1/cmr/m/n/12 This means that you can now make your own im-ple-men-ta-tions for \OT1/cmtt/m/n/12 ImpactOperator::flow
+[4]
+Overfull \hbox (63.99802pt too wide) in paragraph at lines 178--185
+\OT1/cmr/m/n/12 This means that you can now make your own im-ple-men-ta-tions for \OT1/cmtt/m/n/12 ImpactOperator::flow
  []
 
-[4]
-Overfull \hbox (8.99408pt too wide) detected at line 238
-[]
+
+Overfull \hbox (59.50505pt too wide) in paragraph at lines 178--185
+\OT1/cmr/m/n/12 these solvers were then used can be found in \OT1/cmtt/m/n/12 ura[]research/src/archive/apr[]11.ipynb\OT1/cmr/m/n/12 .
+ []
+
+
+Overfull \hbox (82.08128pt too wide) in paragraph at lines 178--185
+\OT1/cmr/m/n/12 In cell 2 we im-port sim-u-la-tion data (now un-der the \OT1/cmtt/m/n/12 ura[]research/old[]simulation[]outputs/
+ []
+
+
+Overfull \hbox (4.06886pt too wide) in paragraph at lines 192--201
+\OT1/cmr/m/n/12 7, etc...) grid ar-range-ment, each gen-er-ated by \OT1/cmtt/m/n/12 src/util/generate[]balls.py\OT1/cmr/m/n/12 .
  []
 
 [5]
-Overfull \hbox (62.05385pt too wide) in paragraph at lines 240--252
-[]\OT1/cmr/m/n/12 Notice that the sub-vector $[] := [][] = [][]$
+Overfull \hbox (48.91142pt too wide) in paragraph at lines 215--220
+[]\OT1/cmr/m/n/12 There is even a util script left (\OT1/cmtt/m/n/12 util/runner.py\OT1/cmr/m/n/12 ) that will run the \OT1/cmtt/m/n/12 rigidbody2d[]cli
  []
 
-[6] [7] [8] [9] [10] (./report.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--229
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--238
+
+ []
+
+[6]
+Underfull \hbox (badness 2961) in paragraph at lines 286--286
+[][][]\OT1/cmr/m/n/10 There's many im-ple-men-ta-tions in the source code of pol-icy it-er-a-tion; see
+ []
+
+[7]
+Overfull \hbox (110.17525pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 # This is the "main" PI function. All it does is flip-flop between making a guess[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 # It repeats until a good policy is found that yields the correct lambda[] 
+ []
+
+
+Overfull \hbox (36.07521pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 # (or until it runs out of iterations -- in which case we say that PI[] 
+ []
+
+
+Overfull \hbox (29.9002pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 # probably doesn't converge for the given Q & b, and return FAILURE)[] 
+ []
+
+
+Overfull \hbox (60.77522pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # here we first update our linear system of equations so that when we[] 
+ []
+
+
+Overfull \hbox (17.5502pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # try to solve the system, the new solution (lambda) will be 0[] 
+ []
+
+
+Overfull \hbox (79.30023pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # we want this row of the linear system to strictly equate to 0,[] 
+ []
+
+
+Overfull \hbox (36.07521pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # so no need to change any rows of the linear system here[] 
+ []
+
+[8]
+Overfull \hbox (122.52525pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # the changes made in this block mean than when the augmented system is[] 
+ []
+
+
+Overfull \hbox (54.60022pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # solved later, the resulting lambda[i] will be forced to 0.[] 
+ []
+
+
+Overfull \hbox (85.47523pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # Hopefully, the lambda we get from solving this augmented system[] 
+ []
+
+
+Overfull \hbox (110.17525pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/12 # will result in the ith row of the original linear system being >= 0[] 
+ []
+
+
+Overfull \hbox (66.95023pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # ^^ we call the method to find the new_lambda here the "inner solver"[] 
+ []
+
+
+Overfull \hbox (42.25021pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # Usually we use a "least squares" or "conjugate gradient" method,[] 
+ []
+
+
+Overfull \hbox (42.25021pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # but ideally it *shouldn't* matter (as long as Q isn't singular!)[] 
+ []
+
+
+Overfull \hbox (36.07521pt too wide) in paragraph at lines 361--361
+[]    \OT1/cmtt/m/n/12 # we know that the LCP conditions from section 2.1 have been met.[] 
+ []
+
+[9] [10]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 409.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 409.
+
+[11]
+Overfull \hbox (75.63211pt too wide) detected at line 488
+[]
+ []
+
+
+Overfull \hbox (62.6108pt too wide) in paragraph at lines 490--505
+[]\OT1/cmr/m/n/12 Let's de-fine the sub-vector $[] := [][] = [][]$
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 542--549
+
+ []
+
+[13]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 563.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 563.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 563.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 563.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 563.
+
+[14] [15] [16] [17]
+Overfull \hbox (20.05606pt too wide) in paragraph at lines 713--719
+\OT1/cmr/m/n/12 ve-loc-ity, and which ones can we ig-nore? (See \OT1/cmtt/m/n/12 K4[]demonstrate[]PI[]2solns.ipynb\OT1/cmr/m/n/12 ) 
+ []
+
+
+Overfull \hbox (2.27515pt too wide) in paragraph at lines 720--723
+\OT1/cmtt/m/n/12 ../../ura[]research/scenes/general/K4.xml\OT1/cmr/m/n/12 , we'll see some-thing like this: 
+ []
+
+<K4_1.png, id=230, 564.1075pt x 671.50874pt>
+File: K4_1.png Graphic file (type png)
+<use K4_1.png>
+Package pdftex.def Info: K4_1.png  used on input line 724.
+(pdftex.def)             Requested size: 282.05305pt x 335.75356pt.
+[18]
+<K4_2.png, id=236, 564.1075pt x 671.50874pt>
+File: K4_2.png Graphic file (type png)
+<use K4_2.png>
+Package pdftex.def Info: K4_2.png  used on input line 732.
+(pdftex.def)             Requested size: 282.05305pt x 335.75356pt.
+ [19 <./K4_1.png>]
+Overfull \hbox (124.26643pt too wide) in paragraph at lines 754--755
+\OT1/cmr/m/n/12 cal Anal-y-sis, vol. 47, no. 4, 2009, pp. 3001{26. JS-TOR, []http://www.jstor.org/stable/27862763[].
+ []
+
+[20 <./K4_2.png>] [21] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 157B889E547F7806AC9D30345D231BB7;2361.
+(rerunfilecheck)             Checksum: 55C4CFDBDF1B87FC268BF51F1FC98B37;5687.
  ) 
 Here is how much of TeX's memory you used:
- 8606 strings out of 476526
- 133232 string characters out of 5814236
- 482185 words of memory out of 5000000
- 29671 multiletter control sequences out of 15000+600000
- 482362 words of font info for 78 fonts, out of 8000000 for 9000
+ 9491 strings out of 476526
+ 146641 string characters out of 5814236
+ 491747 words of memory out of 5000000
+ 30495 multiletter control sequences out of 15000+600000
+ 481642 words of font info for 75 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 72i,21n,77p,489b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/isaiah/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (10 pages, 238356 bytes).
+ 72i,21n,77p,489b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/isaiah/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on report.pdf (21 pages, 355036 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 365 PDF objects out of 1000 (max. 8388607)
+ 290 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

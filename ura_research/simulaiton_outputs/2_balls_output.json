@@ -30,7 +30,7 @@
 "ipopt_converges": true,
 "policy_converges": true,
 "policy_v2_converges": false,
-"ipopt_time": 2,
+"ipopt_time": 21,
 "pi_time": 0,
 "pi_v2_time": 0,
 }
