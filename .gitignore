@@ -9,5 +9,3 @@ build
 xcode
 *.pyc
 .vscode
-**/outs/**/*.out
-**/scenes/**/*.xml
