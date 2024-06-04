@@ -20,9 +20,13 @@
 #include "scisim/ConstrainedMaps/Sobogus.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorAPGD.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPI.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPenalty.h"
 
 #ifdef IPOPT_FOUND
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIpopt.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperator3.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIsaiahDebug.h"
+// #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPIv2.h"
 #include "scisim/ConstrainedMaps/FrictionMaps/SmoothMDPOperatorIpopt.h"
 #endif
 
@@ -148,6 +152,18 @@ std::unique_ptr<ImpactOperator> ConstrainedMapUtilities::deserializeImpactOperat
   {
     impact_operator.reset( new LCPOperatorIpopt{ input_stream } );
   }
+  else if ( "lcp_solver3" == impact_operator_name )
+  {
+    impact_operator.reset( new LCPOperator3{ input_stream } );
+  }
+  else if ( "lcp_solver_isaiah_debug" == impact_operator_name )
+  {
+    impact_operator.reset( new LCPOperatorIsaiahDebug{ input_stream } );
+  }
+  // else if ( "lcp_solver_pi_v2" == impact_operator_name )
+  // {
+  //   impact_operator.reset( new LCPOperatorPIv2{ input_stream } );
+  // }
   #endif
   else if( "lcp_apgd" == impact_operator_name )
   {
@@ -155,7 +171,11 @@ std::unique_ptr<ImpactOperator> ConstrainedMapUtilities::deserializeImpactOperat
   }
   else if( "lcp_policy_iteration" == impact_operator_name )
   {
-    impact_operator.reset(new LCPOperatorPI{input_stream} );
+    impact_operator.reset(new LCPOperatorPI{ input_stream } );
+  }
+  else if( "lcp_penalty" == impact_operator_name )
+  {
+    impact_operator.reset(new LCPOperatorPenalty{ input_stream });
   }
   else if( "NULL" == impact_operator_name )
   {

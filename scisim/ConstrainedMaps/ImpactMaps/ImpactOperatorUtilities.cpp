@@ -7,6 +7,8 @@
 
 #include "scisim/Constraints/Constraint.h"
 
+#include <iostream>
+
 void ImpactOperatorUtilities::computeN( const FlowableSystem& fsys, const std::vector<std::unique_ptr<Constraint>>& V, const VectorXs& q, SparseMatrixsc& N )
 {
   assert( N.cols() == int( V.size() ) );
@@ -41,6 +43,8 @@ void ImpactOperatorUtilities::computeN( const FlowableSystem& fsys, const std::v
     assert( con_itr == V.cend() );
   }
 
+  // std::cout << "N:\n" << MatrixXs(N) << std::endl;
+
   assert( column_nonzeros.sum() == N.nonZeros() );
 
   N.prune( []( const Eigen::Index& row, const Eigen::Index& col, const scalar& value ) { return value != 0.0; } );
@@ -52,7 +56,11 @@ void ImpactOperatorUtilities::computeLCPQPLinearTerm( const SparseMatrixsc& N, c
   assert( v0F.size() == v0.size() ); assert( N.rows() == v0.size() ); assert( N.cols() == nrel.size() );
   assert( CoR.size() == nrel.size() ); assert( ( CoR.array() >= 0.0 ).all() ); assert( ( CoR.array() <= 1.0 ).all() );
 
+  // std::cerr << nrel << std::endl; // 0 vector?
+  // std::cerr << ( CoR.array() * ( N.transpose() * v0 + nrel ).array() ) << std::endl;
   linear_term = N.transpose() * v0F + nrel + ( CoR.array() * ( N.transpose() * v0 + nrel ).array() ).matrix();
+  std::cerr <<  linear_term << std::endl;
+  
 
   // If the CoR is constant, double check against the simplified solution
   #ifndef NDEBUG

@@ -1,0 +1,25 @@
+<rigidbody2d_scene>
+  <camera center="0 0" scale="8.3225" fps="50" render_at_fps="0" locked="0"/>
+
+  <!-- this seems to conserve momentum better -->
+  <integrator type="verlet" dt="0.05"/>
+
+  <impact_operator type="gr" CoR="1.0" v_tol="1.0e-9" cache_impulses="0">
+    <!-- <solver name="policy_iteration" max_iters="100" tol="1.0e-8"/> -->
+    <solver name="lcp_solver_isaiah_debug" linear_solvers="ma27 ma86" max_iters="100" tol="1.0e-12"/>
+  </impact_operator>
+
+  <!-- no gravity -->
+  <near_earth_gravity f="0.0 0.0"/>
+
+  <geometry type="circle" r="1.0"/>
+
+  <rigid_body x="-2.001 0.0" theta="0.0" v="1.0 0.0" omega="0" rho="8.0" geo_idx="0"/>
+  <rigid_body x="0.0 0.0" theta="0.0" v="0.0 0.0" omega="0" rho="8.0" geo_idx="0"/>
+  <rigid_body x="-2.0 0.001" theta="0.0" v="1.0 0.0" omega="0" rho="8.0" geo_idx="0"/>
+  <rigid_body x="0.001 0.002" theta="0.0" v="-1.0 0.0" omega="0" rho="8.0" geo_idx="0"/>
+  <rigid_body x="0.001 2.002" theta="0.0" v="0.0 -1.0" omega="0" rho="8.0" geo_idx="0"/>
+  <!-- <rigid_body x="10.0 0.0" theta="0.0" v="1.0 0.0" omega="0" rho="8.0" geo_idx="0"/>
+  <rigid_body x="12.0 0.0" theta="0.0" v="0.0 0.0" omega="0" rho="8.0" geo_idx="0"/> -->
+
+</rigidbody2d_scene>

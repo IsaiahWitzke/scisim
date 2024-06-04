@@ -3,6 +3,7 @@
 // Breannan Smith
 // Last updated: 09/30/2015
 
+#include <iostream>
 #include "CircleCircleConstraint.h"
 
 #include "scisim/Math/MathUtilities.h"
@@ -36,6 +37,8 @@ scalar CircleCircleConstraint::evalNdotV( const VectorXs& q, const VectorXs& v )
 void CircleCircleConstraint::evalgradg( const VectorXs& q, const int col, SparseMatrixsc& G, const FlowableSystem& fsys ) const
 {
   assert( col >= 0 ); assert( col < G.cols() );
+  // std::cout << "m_n" << std::endl;
+  // std::cout << m_n << std::endl;
 
   // MUST BE ADDED GOING DOWN THE COLUMN. DO NOT TOUCH ANOTHER COLUMN.
   assert( m_idx0 < m_idx1 );

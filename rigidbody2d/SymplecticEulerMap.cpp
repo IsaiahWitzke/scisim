@@ -4,6 +4,7 @@
 // Last updated: 12/07/2015
 
 #include "SymplecticEulerMap.h"
+#include <iostream>
 
 #include "scisim/UnconstrainedMaps/FlowableSystem.h"
 
@@ -30,11 +31,16 @@ void SymplecticEulerMap::flow( const VectorXs& q0, const VectorXs& v0, FlowableS
     }
   }
 
+  //std::cout << "actual force updat... "
+
   // Velocity update
+  // (since q1 here is a placeholder for force... this is applying acceleration to yield v1)
   v1 = v0 + dt * fsys.Minv() * q1;
 
   // Position update
   q1 = q0 + dt * v1;
+  // std::cout << "\nin SymplecticEulerMap, q0: \n" << q0 << std::endl;
+  // std::cout << "in SymplecticEulerMap, q1: \n" << q1 << std::endl;
 }
 
 std::string SymplecticEulerMap::name() const

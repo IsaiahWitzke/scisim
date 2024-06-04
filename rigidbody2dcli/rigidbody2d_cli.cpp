@@ -439,6 +439,7 @@ static int executeSimLoop()
   while( true )
   {
     // N.B. this will ocassionaly not trigger at the *exact* equal time due to floating point errors
+    std::cerr << g_iteration * scalar( g_dt ) << "/" << g_end_time << std::endl;
     if( g_iteration * scalar( g_dt ) >= g_end_time )
     {
       #ifdef USE_HDF5
@@ -688,8 +689,8 @@ int main( int argc, char** argv )
   assert( g_end_time > 0.0 );
   g_save_number_width = MathUtilities::computeNumDigits( 1 + unsigned( ceil( g_end_time / scalar( g_dt ) ) ) / g_steps_per_save );
 
-  printCompileInfo( std::cout );
-  std::cout << "Body count: " << g_sim.state().nbodies() << std::endl;
+  // printCompileInfo( std::cout );
+  // std::cout << "Body count: " << g_sim.state().nbodies() << std::endl;
 
   // If there are any intitial collisions, warn the user
   //{
@@ -719,7 +720,7 @@ int main( int argc, char** argv )
 
   if( g_end_time == SCALAR_INFINITY )
   {
-    std::cout << "No end time specified. Simulation will run indefinitely." << std::endl;
+    std::cerr << "No end time specified. Simulation will run indefinitely." << std::endl;
   }
 
   return executeSimLoop();

@@ -31,6 +31,7 @@
 #include "scisim/ConstrainedMaps/ImpactMaps/GROperator.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/GRROperator.h"
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPI.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorPenalty.h"
 #include "scisim/ConstrainedMaps/FrictionSolver.h"
 #include "scisim/ConstrainedMaps/StaggeredProjections.h"
 #include "scisim/ConstrainedMaps/Sobogus.h"
@@ -38,6 +39,8 @@
 
 #ifdef IPOPT_FOUND
 #include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIpopt.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperator3.h"
+#include "scisim/ConstrainedMaps/ImpactMaps/LCPOperatorIsaiahDebug.h"
 #endif
 
 #ifdef QL_FOUND
@@ -611,6 +614,14 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
     if (!loadMaxIters(node, solver_name, max_iters)) return false;
     impact_operator.reset(new LCPOperatorPI {tol, max_iters});
   }
+  else if ( solver_name == "penalty" )
+  {
+    scalar tol;
+    unsigned max_iters;
+    if (!loadTolerance(node, solver_name, tol)) return false;
+    if (!loadMaxIters(node, solver_name, max_iters)) return false;
+    impact_operator.reset(new LCPOperatorPenalty {tol, max_iters});
+  }
   #ifdef QL_FOUND
   else if( solver_name == "ql_vp" )
   {
@@ -648,7 +659,7 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
   }
   #endif
   #ifdef IPOPT_FOUND
-  else if( solver_name == "ipopt" )
+  else if(( solver_name == "ipopt" ) || (solver_name == "solver3") || solver_name == "lcp_solver_isaiah_debug")
   {
     // Attempt to read the desired linear solvers
     std::vector<std::string> linear_solvers;
@@ -696,7 +707,17 @@ static bool loadLCPSolver( const rapidxml::xml_node<>& node, std::unique_ptr<Imp
         return false;
       }
     }
-    impact_operator.reset( new LCPOperatorIpopt{ linear_solvers, con_tol } );
+    if (solver_name == "ipopt") {
+      impact_operator.reset( new LCPOperatorIpopt{ linear_solvers, con_tol } );
+    } else if (solver_name == "solver3") {
+      unsigned max_iters;
+      if (!loadMaxIters(node, solver_name, max_iters)) return false;
+      impact_operator.reset( new LCPOperator3{ linear_solvers, con_tol, max_iters } );
+    } else if (solver_name == "lcp_solver_isaiah_debug") {
+      unsigned max_iters;
+      if (!loadMaxIters(node, solver_name, max_iters)) return false;
+      impact_operator.reset( new LCPOperatorIsaiahDebug{ linear_solvers, con_tol, max_iters } );
+    }
   }
   #endif
   else

@@ -37,6 +37,7 @@ void VerletMap::flow( const VectorXs& q0, const VectorXs& v0, FlowableSystem& fs
 
   // F( q0 )
   VectorXs F{ N };
+  // basically just computes gravity
   fsys.computeForce( q0, v0, start_time, F );
   zeroForcesOnKinematicBodies( fsys, F );
 

@@ -24,6 +24,9 @@ public:
 
     virtual void serialize( std::ostream& output_stream ) const override;
 
+    // if we already know the correct answer, we can set it here... we can then use this as a reference for debugging purposes
+    VectorXs target_soln{};
+
 private:
     const scalar m_tol;
     const unsigned max_iters;
