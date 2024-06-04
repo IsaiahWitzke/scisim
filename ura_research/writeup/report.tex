@@ -326,8 +326,8 @@ def update_value(policy, Q, b):
             # so no need to change any rows of the linear system here
             continue
         else:
-            # the changes made in this block mean than when the augmented system is
-            # solved later, the resulting lambda[i] will be forced to 0. 
+            # the changes made in this block mean than when the augmented system
+            # is solved later, the resulting lambda[i] will be forced to 0. 
             # Hopefully, the lambda we get from solving this augmented system
             # will result in the ith row of the original linear system being >= 0
             set the ith row of augmented_Q to 0s

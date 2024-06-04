@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1717465910 "/home/isaiah/scisim/ura_research/writeup/report.tex" "report.pdf" "report" 1717465911
+["pdflatex"] 1717466649 "/home/isaiah/scisim/ura_research/writeup/report.tex" "report.pdf" "report" 1717466650
   "/home/isaiah/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1717250602 14040 96465c4f580a584666d632a9e6b64c81 ""
-  "/home/isaiah/scisim/ura_research/writeup/report.tex" 1717465909 40000 cadc2da3ac9d705292162025dedbc96c ""
+  "/home/isaiah/scisim/ura_research/writeup/report.tex" 1717466649 40000 7bf4cb1968d45978411eb5e1a45f99b5 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -109,11 +109,11 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1662995072 79177 6b585241e99bfabab94528118ed8b7f4 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1662995076 2365584 20505b95de050f45d2803c47c3c31422 ""
   "/usr/local/texlive/2022/texmf.cnf" 1662995071 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "K4_1.png" 1717463373 44061 60925f48b6e0868baf9f478a0257d2a1 ""
-  "K4_2.png" 1717465259 46304 058e9c64d840bdde2b8d3d275696db66 ""
-  "report.aux" 1717465911 4140 95ae2d5c05c4622221768c7c637932e5 "pdflatex"
-  "report.out" 1717465911 5687 55c4cfdbdf1b87fc268bf51f1fc98b37 "pdflatex"
-  "report.tex" 1717465909 40000 cadc2da3ac9d705292162025dedbc96c ""
+  "K4_1.png" 1717466633 44061 60925f48b6e0868baf9f478a0257d2a1 ""
+  "K4_2.png" 1717466633 46304 058e9c64d840bdde2b8d3d275696db66 ""
+  "report.aux" 1717466649 4140 95ae2d5c05c4622221768c7c637932e5 "pdflatex"
+  "report.out" 1717466649 5687 55c4cfdbdf1b87fc268bf51f1fc98b37 "pdflatex"
+  "report.tex" 1717466649 40000 7bf4cb1968d45978411eb5e1a45f99b5 ""
   (generated)
   "report.aux"
   "report.log"
